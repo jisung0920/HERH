@@ -117,7 +117,7 @@ public class ReserveActivity extends AppCompatActivity {
                     }catch (MalformedURLException e){
                         e.printStackTrace();
 
-                    } catch (MalformedURLException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                     Intent save = new Intent(ReserveActivity.this, MainActivity.class);

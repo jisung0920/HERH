@@ -23,6 +23,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class User_ResActivity extends AppCompatActivity {
     String myJSON;
@@ -62,7 +63,6 @@ public class User_ResActivity extends AppCompatActivity {
                     }
                 });
                 m_adapter = new MenuAdapter(r_view.getContext(), alist); //어뎁터 생성 및 설정
-                alist.add(new Menu("test", "test", "test"));  //리스트에 데이터 추가
                 listView.setAdapter(m_adapter); //리스트뷰와 어뎁터 연결
                 dialog.show(); // 대화상자 보여주기
 
@@ -94,6 +94,7 @@ public class User_ResActivity extends AppCompatActivity {
                         bufferedReader.close();
                         inputStream.close();
                         con.disconnect();
+                        Log.d("check11",stringBuilder.toString().trim());
                         return stringBuilder.toString().trim();//onPostExecute실행
 
                     //받아온 데이터를 StringBuilder 의 형태로 만든다.
@@ -110,11 +111,18 @@ public class User_ResActivity extends AppCompatActivity {
                 try {
                     Log.d("check11", "0");
                     JSONObject jsonObject = new JSONObject(result);//jsonObject 형태로 위에서 데이터들을 포멧한다.
+                    Log.d("check11", "42434");
                     JSONArray reserveData = jsonObject.getJSONArray("response"); //json형태에서 response라는 키를 갖는 배열을 가져온다.
                     Log.d("check11", "1");
+                    alist.clear();
                     for (int i = 0; i < reserveData.length(); i++) { //배열의 길이만큼 반복해서 더한다.
                         JSONObject object = reserveData.getJSONObject(i);
-                        String name = object.getString("user_tel");
+                        String name = object.getString("user_name");
+                        String num = object.getString("number");
+                        String tel = object.getString("user_tel");
+                        String time = object.getString("time");
+                        Menu menu = new Menu(time,name,num);
+                        alist.add(menu);
                         Log.d("check11", "this"+name);
                         /*
                         이 부분에 위의 getString 사용해서 데이터를 받아서
@@ -128,6 +136,7 @@ public class User_ResActivity extends AppCompatActivity {
                         * */
 
                     }
+                    m_adapter.notifyDataSetChanged();
                 } catch (JSONException e) {
                     Log.d("check11", "00");
                     e.printStackTrace();
@@ -138,5 +147,4 @@ public class User_ResActivity extends AppCompatActivity {
         GetDataJSON g = new GetDataJSON();
         g.execute(string); //doinBackground 메소드를 실행시킨다.
     }
-
 }
