@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "646846915744",
+    "firebase_url": "https://herh-199ef.firebaseio.com",
+    "project_id": "herh-199ef",
+    "storage_bucket": "herh-199ef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:646846915744:android:8da4ae76e95af508",
+        "android_client_info": {
+          "package_name": "com.example.jisung.herh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "646846915744-q13d2i5uj87ebuqe1qv267v9hh61h44d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jisung.herh",
+            "certificate_hash": "b5d86b979c91686dc2b437a652b9aabc2397a145"
+          }
+        },
+        {
+          "client_id": "646846915744-6jaba3nmtanv01jhos7h69saf8984nqs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADCRAfIcHbY5zZeDt1J09x5s_QvpxsvAA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "646846915744-6jaba3nmtanv01jhos7h69saf8984nqs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

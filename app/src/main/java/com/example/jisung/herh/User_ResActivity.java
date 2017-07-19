@@ -35,6 +35,8 @@ public class User_ResActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_res);
         alist = new ArrayList<Menu>();  //Menu형태의 리스트를 생성한다.
+        Intent getintent = getIntent();
+        final String store = getintent.getStringExtra("store");
 
         CalendarView calendar = (CalendarView) findViewById(R.id.calendarView3);
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -46,12 +48,16 @@ public class User_ResActivity extends AppCompatActivity {
                 dialog.setView(r_view); //대화상자 뷰 설정
                 listView = (ListView) r_view.findViewById(R.id.list_item); //리스트 뷰 가져오기
                 TextView s_date = (TextView) r_view.findViewById(R.id.textView2); //택스트 뷰 가져오기
-                s_date.setText(year + " . " + (month + 1) + " . " + dayOfMonth); // 텍스트 뷰 설정
+                final String dateText =year + " . " + (month + 1) + " . " + dayOfMonth;
+                s_date.setText(dateText); // 텍스트 뷰 설정
                 Button button = (Button) r_view.findViewById(R.id.button); // 버튼 뷰 가져오기
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) { //버튼 클릭 이번트 설정
                         Intent intent = new Intent(User_ResActivity.this, ReserveActivity.class); //인텐드 생성 및 설정
+                        intent.putExtra("date",dateText);
+                        intent.putExtra("store",store);
+
                         startActivity(intent); // 인텐트 실행
                     }
                 });

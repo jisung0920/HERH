@@ -14,7 +14,7 @@
         android:layout_weight="25"/>
     <TextView
         android:gravity="center"
-        android:id="@+id/getname"
+        android:id="@+id/team_Infor"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:text="학회 알파"
@@ -22,7 +22,7 @@
         android:layout_weight = "13"/>
     <TextView
         android:gravity="center"
-        android:id="@+id/getpeople"
+        android:id="@+id/peo_Infor"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:text="15명+3"
@@ -30,10 +30,18 @@
         android:layout_weight = "13"/>
     <TextView
         android:gravity="center"
-        android:id="@+id/getphonenum"
+        android:id="@+id/phone_Infor"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:text="01089519523"
+        android:textSize="30dp"
+        android:layout_weight = "13"/>
+    <TextView
+        android:gravity="center"
+        android:id="@+id/time_Infor"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="몇시 몇분"
         android:textSize="30dp"
         android:layout_weight = "13"/>
     <TextView
@@ -52,12 +60,14 @@
         android:layout_weight="20">
         <Button
             android:background="@color/loginBtnOn"
+            android:id="@+id/yes"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="70dp"
             android:text="예약"/>
         <Button
             android:background="@color/loginBtnOn"
+            android:id="@+id/no"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="70dp"
