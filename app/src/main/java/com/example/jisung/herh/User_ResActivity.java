@@ -20,8 +20,10 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -44,12 +46,12 @@ public class User_ResActivity extends AppCompatActivity {
 
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 View r_view = View.inflate(view.getContext(), R.layout.r_list, null);   //뷰 가져오기
-                getDbData("http://jisung0920.cafe24.com/hers.php"); //서버에서 데이터 가져오는 함수 호출
+                final String dateText =year + "-" + (month + 1) + "-" + dayOfMonth;
+                getDbData("http://jisung0920.cafe24.com/hers.php",store,dateText); //서버에서 데이터 가져오는 함수 호출
                 final AlertDialog.Builder dialog = new AlertDialog.Builder(view.getContext()); //대화상자 생성
                 dialog.setView(r_view); //대화상자 뷰 설정
                 listView = (ListView) r_view.findViewById(R.id.list_item); //리스트 뷰 가져오기
                 TextView s_date = (TextView) r_view.findViewById(R.id.textView2); //택스트 뷰 가져오기
-                final String dateText =year + " . " + (month + 1) + " . " + dayOfMonth;
                 s_date.setText(dateText); // 텍스트 뷰 설정
                 Button button = (Button) r_view.findViewById(R.id.button); // 버튼 뷰 가져오기
                 button.setOnClickListener(new View.OnClickListener() {
@@ -71,17 +73,26 @@ public class User_ResActivity extends AppCompatActivity {
         });
     }
 
-    private void getDbData(String string) { // 서버의 DB에서 data 가져오는 메소드
+    private void getDbData(String string,String store, String date) { // 서버의 DB에서 data 가져오는 메소드
         class GetDataJSON extends AsyncTask<String, Void, String> { // 서버 관련이라 멀티 thread를 사용하기 위해
             // AsyncTask를 사용한다.
             @Override
             protected String doInBackground(String... params) {// AsyncTask의 overide 메소드
 
                 String uri = params[0]; //params에 php 주소가 있으므로 uri에 주소가 들어간다.
+                String store = params[1];
+                String date = params[2];
 
                 try {
                     URL url = new URL(uri);//url 객체가 생성된다.
                     HttpURLConnection con = (HttpURLConnection) url.openConnection(); //url을 연결하기 위한 객체 con을 생성
+                    con.setRequestMethod("POST");
+                    con.setDoOutput(true);
+                    String postData = "store=" + URLEncoder.encode(store) +"&date=" + URLEncoder.encode(date);
+                    OutputStream outputStream = con.getOutputStream();
+                    outputStream.write(postData.getBytes("UTF-8"));
+                    outputStream.flush();
+                    outputStream.close();
                     InputStream inputStream = con.getInputStream();
                     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
                     String tmp;
@@ -109,11 +120,8 @@ public class User_ResActivity extends AppCompatActivity {
                 // 위의 작업이 끝날때 실행된다
                 //doinbackgroud 의 return인 sb.toString().trim()이 result로 온다.
                 try {
-                    Log.d("check11", "0");
                     JSONObject jsonObject = new JSONObject(result);//jsonObject 형태로 위에서 데이터들을 포멧한다.
-                    Log.d("check11", "42434");
                     JSONArray reserveData = jsonObject.getJSONArray("response"); //json형태에서 response라는 키를 갖는 배열을 가져온다.
-                    Log.d("check11", "1");
                     alist.clear();
                     for (int i = 0; i < reserveData.length(); i++) { //배열의 길이만큼 반복해서 더한다.
                         JSONObject object = reserveData.getJSONObject(i);
@@ -123,28 +131,15 @@ public class User_ResActivity extends AppCompatActivity {
                         String time = object.getString("time");
                         Menu menu = new Menu(time,name,num);
                         alist.add(menu);
-                        Log.d("check11", "this"+name);
-                        /*
-                        이 부분에 위의 getString 사용해서 데이터를 받아서
-                        데이터를 모아서 객체를 만들고
-                        객체를 arraylist에 추가해서
-                        리스트 뷰에 보이도록
-                        https://github.com/jisung0920/project_alpa/blob/master/%EC%88%98%EC%A0%95%EB%B3%B8_15/JiManagement/app/src/main/java/com/example/park/management/FreeBoardFragment.java
-                        200번째 줄 부분 참고하면 될거야
-
-                        db랑 php는 나중에 수정을 더 해야될거 같아서 위에거는 테스트한다 생각하고 만들면 될거같아
-                        * */
-
                     }
                     m_adapter.notifyDataSetChanged();
                 } catch (JSONException e) {
-                    Log.d("check11", "00");
                     e.printStackTrace();
 
                 }
             }
         }
         GetDataJSON g = new GetDataJSON();
-        g.execute(string); //doinBackground 메소드를 실행시킨다.
+        g.execute(string,store,date); //doinBackground 메소드를 실행시킨다.
     }
 }
