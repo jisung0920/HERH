@@ -42,11 +42,12 @@ public class reserverAdapter  extends BaseAdapter {
         LayoutInflater inflater = LayoutInflater.from(context);
         if(convertView == null)
             convertView = inflater.inflate(R.layout.r_list_item,null);
-
-        TextView txtview = (TextView)convertView.findViewById(R.id.name);
-        TextView res_tel = (TextView)convertView.findViewById(R.id.res_tel);
-        txtview.setText(alist.get(position).getName());
-        res_tel.setText(alist.get(position).getTime());
+        TextView time = (TextView)convertView.findViewById(R.id.time);
+        TextView name = (TextView)convertView.findViewById(R.id.name);
+        TextView num = (TextView)convertView.findViewById(R.id.number);
+        time.setText(alist.get(position).getTime().substring(0,5));
+        name.setText(alist.get(position).getName());
+        num.setText(alist.get(position).getNum()+"("+alist.get(position).getError()+")"+"명");
         return convertView;
     }
 }

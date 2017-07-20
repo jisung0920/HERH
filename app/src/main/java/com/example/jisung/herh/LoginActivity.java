@@ -52,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
                 intent=new Intent(this,MainActivity.class);
             else
                 intent = new Intent(this,ResCheckActivity.class);
+            intent.putExtra("store","한신포차");//tmp
             startActivity(intent);
         }
 

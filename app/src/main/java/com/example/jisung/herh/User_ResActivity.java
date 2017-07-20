@@ -28,10 +28,9 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class User_ResActivity extends AppCompatActivity {
-    String myJSON;
-    ArrayList<Menu> alist;
+    ArrayList<reserver> list;
     ListView listView;
-    MenuAdapter m_adapter;
+    reserverAdapter adapter;
     String store;
     String dateText;
 
@@ -39,7 +38,7 @@ public class User_ResActivity extends AppCompatActivity {
       protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_res);
-        alist = new ArrayList<Menu>();  //Menu형태의 리스트를 생성한다.
+        list = new ArrayList<reserver>();  //Menu형태의 리스트를 생성한다.
         Intent getintent = getIntent();
         store = getintent.getStringExtra("store");
 
@@ -49,8 +48,6 @@ public class User_ResActivity extends AppCompatActivity {
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 View r_view = View.inflate(view.getContext(), R.layout.r_list, null);   //뷰 가져오기
                 dateText =year + "-" + (month + 1) + "-" + dayOfMonth;
-                Log.d("check11",dateText+"&"+store);
-
                 getDbData("http://jisung0920.cafe24.com/hers.php"); //서버에서 데이터 가져오는 함수 호출
                 final AlertDialog.Builder dialog = new AlertDialog.Builder(view.getContext()); //대화상자 생성
                 dialog.setView(r_view); //대화상자 뷰 설정
@@ -68,8 +65,8 @@ public class User_ResActivity extends AppCompatActivity {
                         startActivity(intent); // 인텐트 실행
                     }
                 });
-                m_adapter = new MenuAdapter(r_view.getContext(), alist); //어뎁터 생성 및 설정
-                listView.setAdapter(m_adapter); //리스트뷰와 어뎁터 연결
+                adapter = new reserverAdapter(r_view.getContext(), list); //어뎁터 생성 및 설정
+                listView.setAdapter(adapter); //리스트뷰와 어뎁터 연결
                 dialog.show(); // 대화상자 보여주기
 
             }
@@ -123,17 +120,21 @@ public class User_ResActivity extends AppCompatActivity {
                 try {
                     JSONObject jsonObject = new JSONObject(result);//jsonObject 형태로 위에서 데이터들을 포멧한다.
                     JSONArray reserveData = jsonObject.getJSONArray("response"); //json형태에서 response라는 키를 갖는 배열을 가져온다.
-                    alist.clear();
+                    list.clear();
                     for (int i = 0; i < reserveData.length(); i++) { //배열의 길이만큼 반복해서 더한다.
                         JSONObject object = reserveData.getJSONObject(i);
                         String name = object.getString("user_name");
-                        String num = object.getString("number");
+                        Log.d("check11","array error1");
+                        int num = object.getInt("number");
+                        int error = object.getInt("error_number");
+                        int allow = object.getInt("allow");
                         String tel = object.getString("user_tel");
                         String time = object.getString("time");
-                        Menu menu = new Menu(time,name,num);
-                        alist.add(menu);
+                        Log.d("check11","array error");
+                        reserver res = new reserver(time,name,tel,num,error,allow);
+                        list.add(res);
                     }
-                    m_adapter.notifyDataSetChanged();
+                    adapter.notifyDataSetChanged();
                 } catch (JSONException e) {
                     e.printStackTrace();
 

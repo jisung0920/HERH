@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:weightSum="3"
-    android:background="@color/loginButton"
+    android:weightSum="3.5"
+    android:background="@color/col1"
     android:layout_height="match_parent">
+
+    <TextView
+        android:gravity="center"
+        android:textColor="@color/text"
+        android:id="@+id/date"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="50dp" />
 
     <TextView
         android:gravity="center"
@@ -16,17 +24,16 @@
     <TextView
         android:gravity="center"
         android:textColor="@color/text"
-        android:id="@+id/name"
-        android:layout_weight="1"
         android:layout_width="0dp"
-        android:layout_height="50dp" />
-
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:id="@+id/number"/>
     <TextView
         android:gravity="center"
         android:textColor="@color/text"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_weight="1"
-        android:id="@+id/number"/>
+        android:layout_weight="0.5"
+        android:id="@+id/state"/>
 
 </LinearLayout>
