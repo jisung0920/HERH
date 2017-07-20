@@ -24,12 +24,15 @@
             android:layout_above="@id/eventView"
             android:layout_weight="1"
             android:weightSum="2">
+
             <Button
-                android:background="@color/loginBtnOn"
+                android:id="@+id/button4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:text="술집"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:background="@color/loginBtnOn"
+                android:text="술집" />
+
             <Button
                 android:background="@color/loginButton"
                 android:layout_width="0dp"

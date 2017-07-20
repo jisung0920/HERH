@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="10"
+    android:background="@color/background"
+    tools:context="com.example.jisung.herh.InfoActivity"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_weight="3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/sample1"
+        android:id="@+id/restView" />
+
+    <fragment
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        class="com.google.android.gms.maps.MapFragment"/>
+
+    <TextView
+        android:id="@+id/restInfo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5" />
+
+    <Button
+        android:id="@+id/reserve"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:onClick="resClick"
+        android:text="예약하기" />
+
+</LinearLayout>
