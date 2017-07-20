@@ -27,8 +27,9 @@ public class MainActivity extends AppCompatActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent =new Intent(MainActivity.this,User_ResActivity.class);
+                Intent intent = new Intent(MainActivity.this,InfoActivity.class);
                 intent.putExtra("store",stores.get(position).getStore_name());
+                intent.putExtra("image", stores.get(position).getImg());
                 startActivity(intent);
             }
         });
