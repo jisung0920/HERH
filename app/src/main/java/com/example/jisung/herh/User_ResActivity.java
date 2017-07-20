@@ -32,22 +32,26 @@ public class User_ResActivity extends AppCompatActivity {
     ArrayList<Menu> alist;
     ListView listView;
     MenuAdapter m_adapter;
+    String store;
+    String dateText;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+      protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_res);
         alist = new ArrayList<Menu>();  //Menu형태의 리스트를 생성한다.
         Intent getintent = getIntent();
-        final String store = getintent.getStringExtra("store");
+        store = getintent.getStringExtra("store");
 
         CalendarView calendar = (CalendarView) findViewById(R.id.calendarView3);
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
 
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 View r_view = View.inflate(view.getContext(), R.layout.r_list, null);   //뷰 가져오기
-                final String dateText =year + "-" + (month + 1) + "-" + dayOfMonth;
-                getDbData("http://jisung0920.cafe24.com/hers.php",store,dateText); //서버에서 데이터 가져오는 함수 호출
+                dateText =year + "-" + (month + 1) + "-" + dayOfMonth;
+                Log.d("check11",dateText+"&"+store);
+
+                getDbData("http://jisung0920.cafe24.com/hers.php"); //서버에서 데이터 가져오는 함수 호출
                 final AlertDialog.Builder dialog = new AlertDialog.Builder(view.getContext()); //대화상자 생성
                 dialog.setView(r_view); //대화상자 뷰 설정
                 listView = (ListView) r_view.findViewById(R.id.list_item); //리스트 뷰 가져오기
@@ -73,22 +77,19 @@ public class User_ResActivity extends AppCompatActivity {
         });
     }
 
-    private void getDbData(String string,String store, String date) { // 서버의 DB에서 data 가져오는 메소드
+    private void getDbData(String string) { // 서버의 DB에서 data 가져오는 메소드
         class GetDataJSON extends AsyncTask<String, Void, String> { // 서버 관련이라 멀티 thread를 사용하기 위해
             // AsyncTask를 사용한다.
             @Override
             protected String doInBackground(String... params) {// AsyncTask의 overide 메소드
 
                 String uri = params[0]; //params에 php 주소가 있으므로 uri에 주소가 들어간다.
-                String store = params[1];
-                String date = params[2];
-
                 try {
                     URL url = new URL(uri);//url 객체가 생성된다.
                     HttpURLConnection con = (HttpURLConnection) url.openConnection(); //url을 연결하기 위한 객체 con을 생성
                     con.setRequestMethod("POST");
                     con.setDoOutput(true);
-                    String postData = "store=" + URLEncoder.encode(store) +"&date=" + URLEncoder.encode(date);
+                    String postData = "store=" + URLEncoder.encode(store) +"&date=" + URLEncoder.encode(dateText);
                     OutputStream outputStream = con.getOutputStream();
                     outputStream.write(postData.getBytes("UTF-8"));
                     outputStream.flush();
@@ -102,11 +103,11 @@ public class User_ResActivity extends AppCompatActivity {
                         stringBuilder.append(tmp + "\n");
                     }
 
-                        bufferedReader.close();
-                        inputStream.close();
-                        con.disconnect();
-                        Log.d("check11",stringBuilder.toString().trim());
-                        return stringBuilder.toString().trim();//onPostExecute실행
+                    bufferedReader.close();
+                    inputStream.close();
+                    con.disconnect();
+                    Log.d("check11",stringBuilder.toString().trim());
+                    return stringBuilder.toString().trim();//onPostExecute실행
 
                     //받아온 데이터를 StringBuilder 의 형태로 만든다.
 
@@ -140,6 +141,6 @@ public class User_ResActivity extends AppCompatActivity {
             }
         }
         GetDataJSON g = new GetDataJSON();
-        g.execute(string,store,date); //doinBackground 메소드를 실행시킨다.
+        g.execute(string); //doinBackground 메소드를 실행시킨다.
     }
 }

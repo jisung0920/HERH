@@ -2,76 +2,133 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/loginButton"
+    android:background="@color/background"
     android:weightSum="100">
 
     <TextView
+        android:background="@color/loginButton"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:text="예약확인"
-        android:textSize="50dp"
+        android:textSize="20dp"
         android:gravity="center"
-        android:layout_weight="25"/>
+        android:layout_weight="10"/>
     <TextView
+        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:id="@+id/team_Infor"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:text="학회 알파"
-        android:textSize="30dp"
-        android:layout_weight = "13"/>
-    <TextView
-        android:gravity="center"
-        android:id="@+id/peo_Infor"
+        android:textSize="20dp"
+        android:layout_weight = "10"/>
+    <LinearLayout
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:text="15명+3"
-        android:textSize="30dp"
-        android:layout_weight = "13"/>
-    <TextView
-        android:gravity="center"
-        android:id="@+id/phone_Infor"
+        android:orientation="horizontal"
+        android:layout_weight="10"
+        android:weightSum="20">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:text="인원"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+        <TextView
+            android:gravity="center"
+            android:id="@+id/peo_Infor"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="15명+3"
+            android:textSize="20dp"
+            android:layout_weight = "10"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:text="01089519523"
-        android:textSize="30dp"
-        android:layout_weight = "13"/>
-    <TextView
-        android:gravity="center"
-        android:id="@+id/time_Infor"
+        android:orientation="horizontal"
+        android:layout_weight="10"
+        android:weightSum="20">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:text="시간"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/time_Infor"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="몇시 몇분"
+            android:textSize="20dp"
+            android:layout_weight = "10"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:text="몇시 몇분"
-        android:textSize="30dp"
-        android:layout_weight = "13"/>
+        android:orientation="horizontal"
+        android:layout_weight="10"
+        android:weightSum="20">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:text="연락처"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:id="@+id/phone_Infor"
+            android:text="01089519523"
+            android:textSize="20dp"
+            android:layout_weight = "10"/>
+    </LinearLayout>
+
     <TextView
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:text="예약하시겠습니까?"
-        android:textSize="30dp"
-        android:layout_weight = "13"/>
+        android:textSize="23dp"
+        android:layout_weight = "10"
+        android:layout_marginBottom="20dp"/>
     <LinearLayout
         android:gravity="center"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:weightSum="2"
-        android:layout_weight="20">
+        android:layout_weight="15">
         <Button
             android:background="@color/loginBtnOn"
             android:id="@+id/yes"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="70dp"
+            android:layout_height="match_parent"
             android:text="예약"/>
         <Button
             android:background="@color/loginBtnOn"
             android:id="@+id/no"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="70dp"
-            android:layout_marginLeft="10dp"
+            android:layout_height="match_parent"
             android:text="취소"/>
     </LinearLayout>
 </LinearLayout>

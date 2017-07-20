@@ -11,19 +11,17 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 /**
- * Created by namhyein on 2017. 5. 31..
+ * Created by jisung on 2017-07-20.
  */
 
-public class MenuAdapter extends BaseAdapter{
+public class reserverAdapter  extends BaseAdapter {
     Context context;
-    ArrayList<Menu> alist;
+    ArrayList<reserver> alist;
 
-    public MenuAdapter(Context context, ArrayList<Menu> alist) {
+    public reserverAdapter(Context context, ArrayList<reserver> alist) {
         this.context = context;
         this.alist = alist;
     }
-
-
     @Override
     public int getCount() {
         return alist.size();
@@ -41,15 +39,14 @@ public class MenuAdapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Log.d("check","call");
         LayoutInflater inflater = LayoutInflater.from(context);
-        Log.d("check","inflater");
         if(convertView == null)
             convertView = inflater.inflate(R.layout.r_list_item,null);
-        Log.d("check","convert");
-        TextView txtview = (TextView)convertView.findViewById(R.id.name);
-        txtview.setText(alist.get(position).getName());
 
+        TextView txtview = (TextView)convertView.findViewById(R.id.name);
+        TextView res_tel = (TextView)convertView.findViewById(R.id.res_tel);
+        txtview.setText(alist.get(position).getName());
+        res_tel.setText(alist.get(position).getTime());
         return convertView;
     }
 }

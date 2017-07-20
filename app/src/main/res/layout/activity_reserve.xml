@@ -40,7 +40,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:text="인원"
-        android:background="@color/col1"
         android:textColor="@color/text"
         android:textSize="20dp"/>
     <LinearLayout
@@ -48,6 +47,7 @@
         android:layout_weight="20"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@color/col1"
         android:orientation="horizontal"
         android:weightSum="100">
         <EditText
@@ -84,7 +84,6 @@
             android:gravity="center"/></LinearLayout>
 
     <TextView
-        android:background="@color/col1"
         android:textColor="@color/text"
         android:layout_marginTop="10dp"
         android:layout_weight="5"
@@ -92,9 +91,11 @@
         android:layout_height="0dp"
         android:text="예약시간"
         android:gravity="center"
+
         android:textSize="20dp"/>
 
     <TimePicker
+        android:background="@color/col1"
         android:id="@+id/time"
         android:layout_weight="20"
         android:layout_width="match_parent"
@@ -108,7 +109,6 @@
         android:layout_weight="8"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/col1"
 
         android:text="예약자 명"
         android:textSize="20dp"/>
@@ -118,6 +118,7 @@
         android:textColor="@color/text"
         android:gravity="center"
         android:id="@+id/name"
+        android:background="@color/col1"
         android:layout_weight="8"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -126,7 +127,6 @@
         android:hint="ex)학회 알파"/>
 
     <TextView
-        android:background="@color/col1"
         android:textColor="@color/text"
         android:gravity="center"
         android:layout_weight="8"
@@ -136,6 +136,7 @@
         android:textSize="20dp"/>
 
     <EditText
+        android:background="@color/col1"
         android:gravity="center"
         android:textColor="@color/text"
         android:id="@+id/phoneNum"

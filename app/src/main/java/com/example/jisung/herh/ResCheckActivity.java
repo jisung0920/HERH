@@ -70,7 +70,6 @@ public class ResCheckActivity extends AppCompatActivity {
                 View re_view = View.inflate(view.getContext(), R.layout.r_list_item2,null);
                 AlertDialog.Builder dialog = new AlertDialog.Builder(view.getContext());
                 dialog.setView(re_view);
-                Button button = (Button)re_view.findViewById(R.id.callbutton);
                 dialog.show();
             }
         });
