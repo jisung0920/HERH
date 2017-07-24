@@ -53,12 +53,12 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDfMPRjIbdaEOwL-eNp6XtrTFc7g6el47A" />
 
-        <activity android:name=".InfoActivity"></activity>
+        <activity android:name=".InfoActivity" />
+        <activity android:name=".regitActivity"></activity>
     </application>
 
 </manifest>

@@ -5,6 +5,7 @@
     android:background="@color/background"
     android:weightSum="100">
 
+
     <TextView
         android:background="@color/loginButton"
         android:layout_width="match_parent"
@@ -13,6 +14,16 @@
         android:textSize="20dp"
         android:gravity="center"
         android:layout_weight="10"/>
+    <TextView
+        android:id="@+id/store_name"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:text="가게명"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        />
     <TextView
         android:layout_marginBottom="10dp"
         android:gravity="center"
@@ -64,13 +75,22 @@
             android:textStyle="bold"/>
 
         <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:id="@+id/date_Infor"
+            android:text="날짜"
+            />
+        <TextView
             android:gravity="center"
             android:id="@+id/time_Infor"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:text="몇시 몇분"
             android:textSize="20dp"
-            android:layout_weight = "10"/>
+            android:layout_weight = "7"/>
 
     </LinearLayout>
 
@@ -117,6 +137,7 @@
         android:weightSum="2"
         android:layout_weight="15">
         <Button
+            android:layout_margin="10dp"
             android:background="@color/loginBtnOn"
             android:id="@+id/yes"
             android:layout_weight="1"
@@ -124,6 +145,7 @@
             android:layout_height="match_parent"
             android:text="예약"/>
         <Button
+            android:layout_margin="10dp"
             android:background="@color/loginBtnOn"
             android:id="@+id/no"
             android:layout_weight="1"
