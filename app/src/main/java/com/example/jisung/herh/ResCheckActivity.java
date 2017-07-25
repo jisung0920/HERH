@@ -38,6 +38,7 @@ public class ResCheckActivity extends AppCompatActivity {
     CalendarView c1;
     Button resBtn,reqBtn;
     ListView listView,r_listView;
+    BackPressCloseHandler backPressCloseHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +83,7 @@ public class ResCheckActivity extends AppCompatActivity {
 //        });
     }
     void init(){
+        backPressCloseHandler = new BackPressCloseHandler(this);
         resBtn = (Button)findViewById(R.id.resBtn);
         reqBtn = (Button)findViewById(R.id.reqBtn);
         list = new ArrayList<reserver>();
@@ -247,4 +249,10 @@ public class ResCheckActivity extends AppCompatActivity {
         GetDataJSON g = new GetDataJSON();
         g.execute(string); //doinBackground 메소드를 실행시킨다.
     }
+
+    @Override
+    public void onBackPressed() {
+        backPressCloseHandler.onBackPressed();
+    }
+
 }

@@ -66,20 +66,22 @@ public class LoginActivity extends AppCompatActivity {
                         editor.commit();
                     }
                     intent.putExtra("id",id);
-                    startActivity(intent);
+
                 }//로그인 성공시
             } else {
                 intent = new Intent(this, ResCheckActivity.class);
 
                 intent.putExtra("store", "한신포차");//tmp
-                startActivity(intent);
+
 
             }
             startActivity(intent);
+
         }
         else if(v.getId()==R.id.regit){
             intent = new Intent(this,regitActivity.class);
             startActivity(intent);
+
         }
 
     }

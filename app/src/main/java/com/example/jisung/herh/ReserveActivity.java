@@ -122,6 +122,7 @@ public class ReserveActivity extends AppCompatActivity {
                     }
                     Intent save = new Intent(ReserveActivity.this, MainActivity.class);
                     startActivity(save);
+                    finish();
 
                 }
             });
