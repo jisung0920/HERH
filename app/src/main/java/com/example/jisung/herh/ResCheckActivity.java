@@ -1,6 +1,8 @@
 package com.example.jisung.herh;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -11,12 +13,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -26,6 +30,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class ResCheckActivity extends AppCompatActivity {
 
@@ -33,12 +38,15 @@ public class ResCheckActivity extends AppCompatActivity {
     ArrayList<reserver_al> r_list;
     reserverAdapter adapter;
     reserver_alAdapter r_adapter;
-    String store;
+    String store,name,time;
+    int flag=0;
     String dateText;
+    int allow;
     CalendarView c1;
     Button resBtn,reqBtn;
     ListView listView,r_listView;
     BackPressCloseHandler backPressCloseHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,18 +77,62 @@ public class ResCheckActivity extends AppCompatActivity {
 
         });
 
-
-//        //r_list.add();
-//        listview.setAdapter(r_adapter);
-//        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                View re_view = View.inflate(view.getContext(), R.layout.r_list_item2,null);
-//                AlertDialog.Builder dialog = new AlertDialog.Builder(view.getContext());
+        r_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                final View re_view = View.inflate(view.getContext(), R.layout.r_list_item2,null);
+                AlertDialog.Builder dialog = new AlertDialog.Builder(view.getContext());
 //                dialog.setView(re_view);
-//                dialog.show();
-//            }
-//        });
+                TextView resName = (TextView) re_view.findViewById(R.id.res_name);
+                TextView resTel = (TextView) re_view.findViewById(R.id.res_tel);
+                TextView resTime = (TextView) re_view.findViewById(R.id.res_time);
+                TextView resNum = (TextView) re_view.findViewById(R.id.res_num);
+                resName.setText("Name : " + r_list.get(position).getName());
+                resTel.setText("Phone : " + r_list.get(position).getTel());
+                resTime.setText("Time : " + r_list.get(position).getTime());
+                resNum.setText("People : " + r_list.get(position).getNum());
+                Button accept = (Button) re_view.findViewById(R.id.res_acc);
+                ImageButton call = (ImageButton) re_view.findViewById(R.id.callbutton);
+                call.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:/" + r_list.get(position).getTel()));
+                        startActivity(intent);
+                    }
+                });
+                final DialogInterface exit = dialog.setView(re_view).show();
+                accept.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        time = r_list.get(position).getTime();
+                        name = r_list.get(position).getName();
+                        allow = r_list.get(position).getAllow();
+                        getDbaccData("http://jisung0920.cafe24.com/hers_allow_change.php");
+                        if(flag == 1){
+                            r_list.get(position).setAllow(1);
+                        }
+                        r_adapter.notifyDataSetChanged();
+                        exit.dismiss();
+                    }
+                });
+                Button refuse = (Button) re_view.findViewById(R.id.res_ref);
+                refuse.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        time = r_list.get(position).getTime();
+                        name = r_list.get(position).getName();
+                        allow = r_list.get(position).getAllow();
+                        getDbaccData("http://jisung0920.cafe24.com/hers_allow_change.php");
+                        if(flag == 1){
+                            r_list.get(position).setAllow(2);
+                        }
+                        r_adapter.notifyDataSetChanged();
+                        exit.dismiss();
+                    }
+                });
+
+            }
+        });
     }
     void init(){
         backPressCloseHandler = new BackPressCloseHandler(this);
@@ -181,6 +233,54 @@ public class ResCheckActivity extends AppCompatActivity {
         GetDataJSON g = new GetDataJSON();
         g.execute(string); //doinBackground 메소드를 실행시킨다.
     }
+    private void getDbaccData(String string) { // 서버의 DB에서 data 가져오는 메소드
+        class GetDataJSON extends AsyncTask<String, Void, String> { // 서버 관련이라 멀티 thread를 사용하기 위해
+            // AsyncTask를 사용한다.
+            @Override
+            protected String doInBackground(String... params) {// AsyncTask의 overide 메소드
+
+                String uri = params[0]; //params에 php 주소가 있으므로 uri에 주소가 들어간다.
+                try {
+                    URL url = new URL(uri);//url 객체가 생성된다.
+                    HttpURLConnection con = (HttpURLConnection) url.openConnection(); //url을 연결하기 위한 객체 con을 생성
+                    con.setRequestMethod("POST");
+                    con.setDoOutput(true);
+                    String postData = "store=" + URLEncoder.encode(store) +"&date=" + URLEncoder.encode(dateText)+"&userName=" + URLEncoder.encode(name) + "&time=" + URLEncoder.encode(time) + "&allow=" + URLEncoder.encode(allow+"");
+                    OutputStream outputStream = con.getOutputStream();
+                    outputStream.write(postData.getBytes("UTF-8"));
+                    outputStream.flush();
+                    outputStream.close();
+                    InputStream inputStream = con.getInputStream();
+                    String result = loginResult(inputStream);
+
+                    inputStream.close();
+                    con.disconnect();
+                    return result;//onPostExecute실행
+
+                    //받아온 데이터를 StringBuilder 의 형태로 만든다.
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            protected void onPostExecute(String result) {// AsyncTask의 overide 메소드
+                // 위의 작업이 끝날때 실행된다
+                //doinbackgroud 의 return인 sb.toString().trim()이 result로 온다.
+                try {
+                    if(result.equals("SUC")) {
+                        flag = 1;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+
+                }
+            }
+        }
+        GetDataJSON g = new GetDataJSON();
+        g.execute(string); //doinBackground 메소드를 실행시킨다.
+    }
     private void getDbResData(String string) { // 서버의 DB에서 data 가져오는 메소드
         class GetDataJSON extends AsyncTask<String, Void, String> { // 서버 관련이라 멀티 thread를 사용하기 위해
             // AsyncTask를 사용한다.
@@ -250,6 +350,12 @@ public class ResCheckActivity extends AppCompatActivity {
         g.execute(string); //doinBackground 메소드를 실행시킨다.
     }
 
+    String loginResult(InputStream in) {
+        String data = "";
+        Scanner s = new Scanner(in);
+        data += s.nextLine();
+        s.close();
+        return data;}
     @Override
     public void onBackPressed() {
         backPressCloseHandler.onBackPressed();
