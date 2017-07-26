@@ -55,7 +55,8 @@ public class ResCheckActivity extends AppCompatActivity {
         Intent getintent = getIntent();
         store = getintent.getStringExtra("store");
         getDbResData("http://jisung0920.cafe24.com/hers_Res_C.php");
-
+        TextView store_name = (TextView)findViewById(R.id.storeName);
+        store_name.setText(store);
         c1.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
 
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
