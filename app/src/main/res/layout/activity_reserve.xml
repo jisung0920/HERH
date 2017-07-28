@@ -34,8 +34,8 @@
 
 
     <TextView
-
-        android:gravity="center"
+        android:layout_marginLeft="10dp"
+        android:gravity="center_vertical"
         android:layout_weight="5"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -84,14 +84,14 @@
             android:gravity="center"/></LinearLayout>
 
     <TextView
+        android:layout_marginLeft="10dp"
         android:textColor="@color/text"
         android:layout_marginTop="10dp"
         android:layout_weight="5"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:text="예약시간"
-        android:gravity="center"
-
+        android:gravity="center_vertical"
         android:textSize="20dp"/>
 
     <TimePicker
@@ -103,13 +103,12 @@
         android:timePickerMode="spinner"></TimePicker>
 
     <TextView
+        android:layout_marginLeft="10dp"
         android:textColor="@color/text"
-
-        android:gravity="center"
+        android:gravity="center_vertical"
         android:layout_weight="8"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-
         android:text="예약자 명"
         android:textSize="20dp"/>
 
@@ -127,8 +126,9 @@
         android:hint="ex)학회 알파"/>
 
     <TextView
+        android:layout_marginLeft="10dp"
         android:textColor="@color/text"
-        android:gravity="center"
+        android:gravity="center_vertical"
         android:layout_weight="8"
         android:layout_width="match_parent"
         android:layout_height="0dp"

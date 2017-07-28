@@ -6,8 +6,8 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:icon="@drawable/hers_main_logo"
+        android:label="HERS"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
@@ -58,7 +58,6 @@
             android:value="AIzaSyDfMPRjIbdaEOwL-eNp6XtrTFc7g6el47A" />
 
         <activity android:name=".InfoActivity" />
-        <activity android:name=".regitActivity" />
         <activity android:name=".MymenuActivity"></activity>
     </application>
 
