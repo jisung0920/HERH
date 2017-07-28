@@ -82,6 +82,8 @@ public class User_ResActivity extends AppCompatActivity {
             }
 
         });
+        TextView store_name = (TextView) findViewById(R.id.textView);
+        store_name.setText(store);
     }
 
     private void getDbData(String string) { // 서버의 DB에서 data 가져오는 메소드
