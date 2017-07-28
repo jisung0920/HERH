@@ -9,37 +9,80 @@
     tools:context="com.example.jisung.herh.MainActivity"
     android:orientation="vertical">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3">
+        <ViewFlipper
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/eventSlide">
+            <ImageView
+                android:onClick="onClick"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/sample1"
+                android:id="@+id/eventView1" />
+            <ImageView
+                android:onClick="onClick"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/sample1"
+                android:id="@+id/eventView2" />
+            <ImageView
+                android:onClick="onClick"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/sample1"
+                android:id="@+id/eventView3" />
+            <ImageView
+                android:onClick="onClick"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/sample1"
+                android:id="@+id/eventView4" />
+            <ImageView
+                android:onClick="onClick"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/sample1"
+                android:id="@+id/eventView5" />
+        </ViewFlipper>
         <ImageView
-            android:onClick="onClick"
-            android:layout_weight="3"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/sample1"
-            android:id="@+id/eventView" />
+            android:id="@+id/mymenu"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="right"
+            android:src="@mipmap/menu"
+            android:onClick="menuClick"/>
+    </FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_above="@id/eventSlide"
+        android:layout_weight="1"
+        android:weightSum="2">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_above="@id/eventView"
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:weightSum="2">
+            android:background="@color/loginBtnOn"
+            android:text="술집" />
 
-            <Button
-                android:id="@+id/button4"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@color/loginBtnOn"
-                android:text="술집" />
-
-            <Button
-                android:background="@color/loginButton"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:text="밥집"
-                android:layout_weight="1"/>
-        </LinearLayout>
+        <Button
+            android:background="@color/loginButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="밥집"
+            android:layout_weight="1"/>
+    </LinearLayout>
 
     <GridView
         android:id="@+id/stores"

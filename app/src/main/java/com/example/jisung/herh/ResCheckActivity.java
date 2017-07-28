@@ -16,6 +16,7 @@ import android.widget.CalendarView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,7 +34,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ResCheckActivity extends AppCompatActivity {
-
+    private  long lastTimeBackPressed;
     ArrayList<reserver> list;
     ArrayList<reserver_al> r_list;
     reserverAdapter adapter;
@@ -46,6 +47,7 @@ public class ResCheckActivity extends AppCompatActivity {
     Button resBtn,reqBtn;
     ListView listView,r_listView;
     BackPressCloseHandler backPressCloseHandler;
+    int posit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +74,6 @@ public class ResCheckActivity extends AppCompatActivity {
                 adapter = new reserverAdapter(r_view.getContext(), list); //어뎁터 생성 및 설정
                 listView.setAdapter(adapter); //리스트뷰와 어뎁터 연결
                 dialog.show(); // 대화상자 보여주기
-
             }
 
         });
@@ -87,11 +88,16 @@ public class ResCheckActivity extends AppCompatActivity {
                 TextView resTel = (TextView) re_view.findViewById(R.id.res_tel);
                 TextView resTime = (TextView) re_view.findViewById(R.id.res_time);
                 TextView resNum = (TextView) re_view.findViewById(R.id.res_num);
-                resName.setText("Name : " + r_list.get(position).getName());
-                resTel.setText("Phone : " + r_list.get(position).getTel());
-                resTime.setText("Time : " + r_list.get(position).getTime());
-                resNum.setText("People : " + r_list.get(position).getNum());
+                resName.setText("이름 : " + r_list.get(position).getName());
+                resTel.setText("전화번호 : " + r_list.get(position).getTel());
+                resTime.setText("시간 : " + r_list.get(position).getDate()+"   "+r_list.get(position).getTime().substring(0,5)+"시");
+                resNum.setText("인원 : " + r_list.get(position).getNum()+"("+r_list.get(position).getError()+") 명");
                 Button accept = (Button) re_view.findViewById(R.id.res_acc);
+                Button refuse = (Button) re_view.findViewById(R.id.res_ref);
+                if(r_list.get(position).getAllow()!=0){
+                    accept.setVisibility(View.GONE);
+                    refuse.setVisibility(View.GONE);
+                }
                 ImageButton call = (ImageButton) re_view.findViewById(R.id.callbutton);
                 call.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -104,29 +110,38 @@ public class ResCheckActivity extends AppCompatActivity {
                 accept.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
+                        dateText=r_list.get(position).getDate();
                         time = r_list.get(position).getTime();
                         name = r_list.get(position).getName();
-                        allow = r_list.get(position).getAllow();
+                        posit = position;
+                        allow = 1;
+                        Log.d("test11","1");
                         getDbaccData("http://jisung0920.cafe24.com/hers_allow_change.php");
+                        Log.d("test11","3");
                         if(flag == 1){
-                            r_list.get(position).setAllow(1);
+
                         }
                         r_adapter.notifyDataSetChanged();
                         exit.dismiss();
                     }
                 });
-                Button refuse = (Button) re_view.findViewById(R.id.res_ref);
+
                 refuse.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        Log.d("test11","2");
+                        dateText=r_list.get(position).getDate();
                         time = r_list.get(position).getTime();
                         name = r_list.get(position).getName();
-                        allow = r_list.get(position).getAllow();
+                        posit=position;
+                        allow = 2;
                         getDbaccData("http://jisung0920.cafe24.com/hers_allow_change.php");
                         if(flag == 1){
                             r_list.get(position).setAllow(2);
+                            Log.d("test11","flag Set");
                         }
                         r_adapter.notifyDataSetChanged();
+                        Log.d("test11","flag chang");
                         exit.dismiss();
                     }
                 });
@@ -245,13 +260,15 @@ public class ResCheckActivity extends AppCompatActivity {
                     HttpURLConnection con = (HttpURLConnection) url.openConnection(); //url을 연결하기 위한 객체 con을 생성
                     con.setRequestMethod("POST");
                     con.setDoOutput(true);
-                    String postData = "store=" + URLEncoder.encode(store) +"&date=" + URLEncoder.encode(dateText)+"&userName=" + URLEncoder.encode(name) + "&time=" + URLEncoder.encode(time) + "&allow=" + URLEncoder.encode(allow+"");
+                    Log.d("test11",store+"-"+dateText+"-"+name+"-"+time+"-"+allow);
+                    String postData = "store=" + URLEncoder.encode(store) +"&date=" + URLEncoder.encode(dateText)+"&userName="+URLEncoder.encode(name) + "&time=" + URLEncoder.encode(time) + "&allow=" + URLEncoder.encode(allow+"") ;
                     OutputStream outputStream = con.getOutputStream();
                     outputStream.write(postData.getBytes("UTF-8"));
                     outputStream.flush();
                     outputStream.close();
                     InputStream inputStream = con.getInputStream();
                     String result = loginResult(inputStream);
+                    Log.d("test11",result);
 
                     inputStream.close();
                     con.disconnect();
@@ -268,9 +285,12 @@ public class ResCheckActivity extends AppCompatActivity {
             protected void onPostExecute(String result) {// AsyncTask의 overide 메소드
                 // 위의 작업이 끝날때 실행된다
                 //doinbackgroud 의 return인 sb.toString().trim()이 result로 온다.
+
                 try {
+                    Log.d("test11+","."+result+".");
                     if(result.equals("SUC")) {
-                        flag = 1;
+                        r_list.get(posit).setAllow(allow);
+                        r_adapter.notifyDataSetChanged();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -356,9 +376,13 @@ public class ResCheckActivity extends AppCompatActivity {
         data += s.nextLine();
         s.close();
         return data;}
-    @Override
     public void onBackPressed() {
-        backPressCloseHandler.onBackPressed();
+        if(System.currentTimeMillis() - lastTimeBackPressed < 1500) {
+            finishAffinity();
+            return;
+        }
+        Toast.makeText(this, "뒤로 버튼을 한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
+        lastTimeBackPressed = System.currentTimeMillis();
     }
 
 }

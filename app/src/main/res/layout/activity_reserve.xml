@@ -47,7 +47,7 @@
         android:layout_weight="20"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/col1"
+        android:background="@drawable/xml_border"
         android:orientation="horizontal"
         android:weightSum="100">
         <EditText
@@ -95,7 +95,7 @@
         android:textSize="20dp"/>
 
     <TimePicker
-        android:background="@color/col1"
+        android:background="@drawable/xml_border"
         android:id="@+id/time"
         android:layout_weight="20"
         android:layout_width="match_parent"
@@ -118,7 +118,7 @@
         android:textColor="@color/text"
         android:gravity="center"
         android:id="@+id/name"
-        android:background="@color/col1"
+        android:background="@drawable/xml_border"
         android:layout_weight="8"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -136,7 +136,7 @@
         android:textSize="20dp"/>
 
     <EditText
-        android:background="@color/col1"
+        android:background="@drawable/xml_border"
         android:gravity="center"
         android:textColor="@color/text"
         android:id="@+id/phoneNum"

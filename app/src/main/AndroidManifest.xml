@@ -58,7 +58,8 @@
             android:value="AIzaSyDfMPRjIbdaEOwL-eNp6XtrTFc7g6el47A" />
 
         <activity android:name=".InfoActivity" />
-        <activity android:name=".regitActivity"></activity>
+        <activity android:name=".regitActivity" />
+        <activity android:name=".MymenuActivity"></activity>
     </application>
 
 </manifest>

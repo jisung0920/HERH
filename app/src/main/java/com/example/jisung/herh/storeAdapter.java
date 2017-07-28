@@ -43,8 +43,7 @@ public class storeAdapter extends BaseAdapter {
         LayoutInflater inflater = LayoutInflater.from(context);
         if (convertView == null)
             convertView = inflater.inflate(R.layout.store_list_item, null);
-        TextView t1 = (TextView) convertView.findViewById(R.id.storename);
-        t1.setText(data.get(position).getStore_name());
+
         ImageView img = (ImageView) convertView.findViewById(R.id.storeimg);
         img.setImageResource(data.get(position).getImg());
 

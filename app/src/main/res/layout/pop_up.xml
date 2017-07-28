@@ -2,19 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="#fff"
     android:weightSum="100">
 
 
     <TextView
+        android:padding="10dp"
+        android:textColor="@color/text"
         android:background="@color/loginButton"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:text="예약확인"
         android:textSize="20dp"
         android:gravity="center"
-        android:layout_weight="10"/>
+        android:layout_marginBottom="10dp"
+        android:layout_weight="20"/>
     <TextView
+        android:textColor="@color/text"
         android:id="@+id/store_name"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -25,6 +29,7 @@
         android:textStyle="bold"
         />
     <TextView
+        android:textColor="@color/text"
         android:layout_marginBottom="10dp"
         android:gravity="center"
         android:id="@+id/team_Infor"
@@ -34,13 +39,15 @@
         android:textSize="20dp"
         android:layout_weight = "10"/>
     <LinearLayout
-        android:layout_marginBottom="10dp"
+        android:background="@drawable/xml_border"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
         android:layout_weight="10"
+        android:padding="10dp"
         android:weightSum="20">
         <TextView
+            android:textColor="@color/text"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="5"
@@ -49,6 +56,7 @@
             android:textSize="20dp"
             android:textStyle="bold"/>
         <TextView
+            android:textColor="@color/text"
             android:gravity="center"
             android:id="@+id/peo_Infor"
             android:layout_width="0dp"
@@ -59,13 +67,14 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:padding="10dp"
         android:orientation="horizontal"
         android:layout_weight="10"
         android:weightSum="20">
         <TextView
+            android:textColor="@color/text"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="5"
@@ -75,6 +84,7 @@
             android:textStyle="bold"/>
 
         <TextView
+            android:textColor="@color/text"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="7"
@@ -84,6 +94,7 @@
             android:text="날짜"
             />
         <TextView
+            android:textColor="@color/text"
             android:gravity="center"
             android:id="@+id/time_Infor"
             android:layout_width="0dp"
@@ -96,13 +107,15 @@
 
 
     <LinearLayout
-        android:layout_marginBottom="10dp"
+        android:background="@drawable/xml_border"
+        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
         android:layout_weight="10"
         android:weightSum="20">
         <TextView
+            android:textColor="@color/text"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="5"
@@ -112,6 +125,7 @@
             android:textStyle="bold"/>
 
         <TextView
+            android:textColor="@color/text"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:gravity="center"
@@ -121,22 +135,17 @@
             android:layout_weight = "10"/>
     </LinearLayout>
 
-    <TextView
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:text="예약하시겠습니까?"
-        android:textSize="23dp"
-        android:layout_weight = "10"
-        android:layout_marginBottom="20dp"/>
+
     <LinearLayout
         android:gravity="center"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:weightSum="2"
+
         android:layout_weight="15">
         <Button
+            android:textColor="@color/textW"
             android:layout_margin="10dp"
             android:background="@color/loginBtnOn"
             android:id="@+id/yes"
@@ -145,6 +154,7 @@
             android:layout_height="match_parent"
             android:text="예약"/>
         <Button
+            android:textColor="@color/textW"
             android:layout_margin="10dp"
             android:background="@color/loginBtnOn"
             android:id="@+id/no"

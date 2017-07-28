@@ -3,12 +3,15 @@ package com.example.jisung.herh;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.icu.util.Calendar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
@@ -18,6 +21,7 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.lang.reflect.Field;
 import java.net.MalformedURLException;
 import java.sql.Time;
 
@@ -62,6 +66,8 @@ public class ReserveActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reserve);
+        numberPickerTextColor((NumberPicker)findViewById(R.id.error), Color.BLACK );
+        dateTimePickerTextColour((TimePicker)findViewById(R.id.time),Color.BLACK);
         init();
     }
 
@@ -83,14 +89,16 @@ public class ReserveActivity extends AppCompatActivity {
         else {
             View dlgview = View.inflate(this, R.layout.pop_up, null);
             final AlertDialog.Builder dlg = new AlertDialog.Builder(this);
-
+            final TextView store_title = (TextView)dlgview.findViewById(R.id.store_name);
             final TextView user_infor = (TextView) dlgview.findViewById(R.id.team_Infor);
             final TextView peo_infor = (TextView) dlgview.findViewById(R.id.peo_Infor);
             final TextView phone_infor = (TextView) dlgview.findViewById(R.id.phone_Infor);
             final TextView time_infor = (TextView) dlgview.findViewById(R.id.time_Infor);
-
+            final TextView date_infor = (TextView)dlgview.findViewById(R.id.date_Infor);
+            store_title.setText(store_name);
             user_infor.setText(user);
             time_infor.setText(hour + "시 " + min + "분");
+            date_infor.setText(day_infor);
             phone_infor.setText(phone_Num);
             peo_infor.setText(people_Num + "(" + error_Num + ")" + "명");
 
@@ -135,4 +143,32 @@ public class ReserveActivity extends AppCompatActivity {
             });
         }
     }
+    void numberPickerTextColor( NumberPicker $v, int $c ){
+        for(int i = 0, j = $v.getChildCount() ; i < j; i++){
+            View t0 = $v.getChildAt(i);
+            if( t0 instanceof EditText ){
+                try{
+                    Field t1 = $v.getClass() .getDeclaredField( "mSelectorWheelPaint" );
+                    t1.setAccessible(true);
+                    ((Paint)t1.get($v)) .setColor($c);
+                    ((EditText)t0) .setTextColor($c);
+                    $v.invalidate();
+                }catch(Exception e){}
+            }
+        }
+    }
+    void dateTimePickerTextColour(ViewGroup $picker, int $c ){
+
+        for( int i = 0, j = $picker.getChildCount() ; i < j ; i++ ){
+            View t0 = (View)$picker.getChildAt(i);
+
+            //NumberPicker는 아까만든 함수로 발라내고
+            if(t0 instanceof NumberPicker) numberPickerTextColor( (NumberPicker)t0, $c );
+
+                //아니면 계속 돌아봐
+            else if(t0 instanceof ViewGroup) dateTimePickerTextColour( (ViewGroup)t0, $c );
+        }
+    }
+
+
 }

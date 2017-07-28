@@ -3,20 +3,41 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    android:weightSum="10">
+    android:padding="10dp"
+    android:weightSum="11">
+    <TextView
+        android:textColor="#fff"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="예약정보"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:background="@color/loginBtnOn"/>
 
     <TextView
+        android:gravity="center_vertical"
+        android:layout_margin="5dp"
+        android:textSize="20dp"
+        android:textColor="@color/text"
         android:id="@+id/res_name"
         android:layout_weight="2.25"
         android:layout_width="match_parent"
         android:layout_height="0dp" />
     <LinearLayout
+
         android:orientation="horizontal"
         android:layout_weight="2.25"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_margin="5dp"
         android:weightSum="10">
         <TextView
+
+            android:gravity="center_vertical"
+            android:textSize="20dp"
+            android:textColor="@color/text"
             android:id="@+id/res_tel"
             android:layout_weight="8"
             android:layout_width="0dp"
@@ -28,17 +49,25 @@
             android:layout_gravity="bottom"
             android:layout_weight="2"
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="match_parent"
             android:text = "call"
             />
     </LinearLayout>
 
     <TextView
+        android:gravity="center_vertical"
+        android:layout_margin="5dp"
+        android:textSize="20dp"
+        android:textColor="@color/text"
         android:id="@+id/res_time"
         android:layout_weight="2.25"
         android:layout_width="match_parent"
         android:layout_height="0dp" />
     <TextView
+        android:gravity="center_vertical"
+        android:layout_margin="5dp"
+        android:textSize="20dp"
+        android:textColor="@color/text"
         android:id="@+id/res_num"
         android:layout_weight="2.25"
         android:layout_width="match_parent"
@@ -51,6 +80,7 @@
         android:layout_height="0dp">
 
         <Button
+            android:layout_margin="5dp"
             android:id="@+id/res_acc"
             android:layout_weight="5"
             android:layout_width="0dp"
@@ -59,6 +89,7 @@
             android:background="@color/loginButton"/>
 
         <Button
+            android:layout_margin="5dp"
             android:id="@+id/res_ref"
             android:layout_width="0dp"
             android:layout_height="match_parent"

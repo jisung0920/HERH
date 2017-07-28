@@ -24,7 +24,9 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Objects;
 
 public class User_ResActivity extends AppCompatActivity {
@@ -33,6 +35,7 @@ public class User_ResActivity extends AppCompatActivity {
     reserverAdapter adapter;
     String store;
     String dateText;
+    String nowDate;
 
     @Override
       protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,10 @@ public class User_ResActivity extends AppCompatActivity {
         list = new ArrayList<reserver>();  //Menu형태의 리스트를 생성한다.
         Intent getintent = getIntent();
         store = getintent.getStringExtra("store");
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+        SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy-MM-dd");
+        nowDate = sdfNow.format(date);
 
         CalendarView calendar = (CalendarView) findViewById(R.id.calendarView3);
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -55,6 +62,9 @@ public class User_ResActivity extends AppCompatActivity {
                 TextView s_date = (TextView) r_view.findViewById(R.id.textView2); //택스트 뷰 가져오기
                 s_date.setText(dateText); // 텍스트 뷰 설정
                 Button button = (Button) r_view.findViewById(R.id.button); // 버튼 뷰 가져오기
+                Log.d("test11",nowDate+"-"+dateText);
+                if(nowDate.compareTo(dateText)>0)
+                    button.setVisibility(View.GONE);
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) { //버튼 클릭 이번트 설정
