@@ -3,12 +3,12 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
-    android:weightSum="100">
+    android:weightSum="60">
 
 
     <TextView
         android:padding="10dp"
-        android:textColor="@color/text"
+        android:textColor="@color/textW"
         android:background="@color/loginButton"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -16,28 +16,38 @@
         android:textSize="20dp"
         android:gravity="center"
         android:layout_marginBottom="10dp"
-        android:layout_weight="20"/>
-    <TextView
-        android:textColor="@color/text"
-        android:id="@+id/store_name"
+        android:layout_weight="10"/>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="10"
-        android:text="가게명"
-        android:gravity="center"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        />
-    <TextView
-        android:textColor="@color/text"
-        android:layout_marginBottom="10dp"
-        android:gravity="center"
-        android:id="@+id/team_Infor"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:text="학회 알파"
-        android:textSize="20dp"
-        android:layout_weight = "10"/>
+        android:weightSum="2"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:textColor="@color/text"
+            android:id="@+id/store_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="가게명"
+            android:gravity="center_vertical"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textColor="@color/text"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_vertical"
+            android:id="@+id/team_Infor"
+            android:text="학회 알파"
+            android:textSize="20dp"
+            android:layout_weight = "1"/>
+
+    </LinearLayout>
     <LinearLayout
         android:background="@drawable/xml_border"
         android:layout_width="match_parent"
@@ -52,12 +62,12 @@
             android:layout_height="match_parent"
             android:layout_weight="5"
             android:text="인원"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:textSize="20dp"
             android:textStyle="bold"/>
         <TextView
             android:textColor="@color/text"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:id="@+id/peo_Infor"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -79,7 +89,7 @@
             android:layout_height="match_parent"
             android:layout_weight="5"
             android:text="시간"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:textSize="20dp"
             android:textStyle="bold"/>
 
@@ -89,7 +99,7 @@
             android:layout_height="match_parent"
             android:layout_weight="7"
             android:textSize="20dp"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:id="@+id/date_Infor"
             android:text="날짜"
             />
@@ -120,7 +130,7 @@
             android:layout_height="match_parent"
             android:layout_weight="5"
             android:text="연락처"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:textSize="20dp"
             android:textStyle="bold"/>
 
@@ -128,7 +138,7 @@
             android:textColor="@color/text"
             android:layout_height="match_parent"
             android:layout_width="0dp"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:id="@+id/phone_Infor"
             android:text="01089519523"
             android:textSize="20dp"
@@ -143,7 +153,7 @@
         android:layout_height="0dp"
         android:weightSum="2"
 
-        android:layout_weight="15">
+        android:layout_weight="10">
         <Button
             android:textColor="@color/textW"
             android:layout_margin="10dp"

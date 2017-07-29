@@ -34,7 +34,7 @@ public class MymenuActivity extends AppCompatActivity {
     ListView listView, r_listView;
     String userId;
     ArrayList<reserver_al> r_list;
-    reserver_alAdapter r_adapter;
+    reserver_user_Adapter r_adapter;
     String store,name,time;
     int allow;
     int flag=0;
@@ -48,7 +48,7 @@ public class MymenuActivity extends AppCompatActivity {
 
         userInfo = (TextView)findViewById(R.id.userInfo);
         r_list = new ArrayList<reserver_al>();
-        r_adapter = new reserver_alAdapter(this,r_list);
+        r_adapter = new reserver_user_Adapter(this,r_list);
         r_listView = (ListView) findViewById(R.id.recordList);
         r_listView.setAdapter(r_adapter);
         Intent getIntent = getIntent();
@@ -161,7 +161,7 @@ public class MymenuActivity extends AppCompatActivity {
                     JSONArray reserveData = jsonObject.getJSONArray("response"); //json형태에서 response라는 키를 갖는 배열을 가져온다.
                     for (int i = 0; i < reserveData.length(); i++) { //배열의 길이만큼 반복해서 더한다.
                         JSONObject object = reserveData.getJSONObject(i);
-                        String name = object.getString("user_name");
+                        String name = object.getString("store_name");
                         Log.d("check11","array error1");
                         int num = object.getInt("number");
                         int error = object.getInt("error_number");

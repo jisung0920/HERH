@@ -68,18 +68,23 @@
         android:layout_weight="1"
         android:weightSum="2">
 
-        <Button
+        <ImageButton
+            android:padding="5dp"
             android:id="@+id/button4"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:src="@drawable/beer"
+            android:scaleType="fitCenter"
             android:background="@color/loginBtnOn"
             android:text="술집" />
 
-        <Button
+        <ImageButton
             android:background="@color/loginButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:src="@drawable/rice"
+            android:scaleType="fitCenter"
             android:text="밥집"
             android:layout_weight="1"/>
     </LinearLayout>

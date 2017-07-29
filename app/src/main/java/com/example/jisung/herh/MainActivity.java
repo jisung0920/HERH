@@ -25,12 +25,11 @@ public class MainActivity extends AppCompatActivity{
     ArrayList<Store> stores = new ArrayList<>();
     storeAdapter adapter;
     GridView list;
-    BackPressCloseHandler backPressCloseHandler;
-    private String id;
+    private String user_id;
 
     protected void init(){
         Intent intent = getIntent();
-        id = intent.getStringExtra("id");
+        user_id = intent.getStringExtra("id");
     }
 
     @Override
@@ -39,11 +38,11 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         init();
 
-        backPressCloseHandler = new BackPressCloseHandler(this);
         stores.add(new Store(R.drawable.sample2,"한신포차"));
         stores.add(new Store(R.drawable.sample3,"맥주창고"));
         stores.add(new Store(R.drawable.sample4,"투다리"));
         stores.add(new Store(R.drawable.sample5,"봉구비어"));
+        stores.add(new Store(R.drawable.sample1,"칠성포차"));
 
         list = (GridView)findViewById(R.id.stores);
         adapter = new storeAdapter(this,stores);
@@ -54,6 +53,7 @@ public class MainActivity extends AppCompatActivity{
                 Intent intent = new Intent(MainActivity.this,InfoActivity.class);
                 intent.putExtra("store",stores.get(position).getStore_name());
                 intent.putExtra("image", stores.get(position).getImg());
+                intent.putExtra("id", user_id);
                 startActivity(intent);
             }
         });
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity{
 
     public void menuClick(View v){
         Intent intent = new Intent(MainActivity.this, MymenuActivity.class);
-        intent.putExtra("id", id);
+        intent.putExtra("id", user_id);
         startActivity(intent);
     }
     public void onBackPressed() {

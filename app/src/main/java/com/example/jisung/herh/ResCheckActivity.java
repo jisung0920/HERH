@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +40,7 @@ public class ResCheckActivity extends AppCompatActivity {
     ArrayList<reserver_al> r_list;
     reserverAdapter adapter;
     reserver_alAdapter r_adapter;
+    LinearLayout linear;
     String store,name,time;
     int flag=0;
     String dateText;
@@ -46,7 +48,7 @@ public class ResCheckActivity extends AppCompatActivity {
     CalendarView c1;
     Button resBtn,reqBtn;
     ListView listView,r_listView;
-    BackPressCloseHandler backPressCloseHandler;
+
     int posit;
 
     @Override
@@ -151,12 +153,11 @@ public class ResCheckActivity extends AppCompatActivity {
         });
     }
     void init(){
-        backPressCloseHandler = new BackPressCloseHandler(this);
         resBtn = (Button)findViewById(R.id.resBtn);
         reqBtn = (Button)findViewById(R.id.reqBtn);
         list = new ArrayList<reserver>();
         c1 = (CalendarView) findViewById(R.id.calendarView);
-
+        linear = (LinearLayout)findViewById(R.id.linear);
         r_listView = (ListView)findViewById(R.id.list1);
         r_list = new ArrayList<reserver_al>();
         r_adapter = new reserver_alAdapter(this,r_list);
@@ -167,14 +168,14 @@ public class ResCheckActivity extends AppCompatActivity {
         if(v.getId()==R.id.resBtn){
             resBtn.setBackgroundResource(R.color.loginBtnOn);
             reqBtn.setBackgroundResource(R.color.loginButton);
-            c1.setVisibility(View.VISIBLE);
+            linear.setVisibility(View.VISIBLE);
             r_listView.setVisibility(View.GONE);
         }
         else if(v.getId()==R.id.reqBtn){
             reqBtn.setBackgroundResource(R.color.loginBtnOn);
             resBtn.setBackgroundResource(R.color.loginButton);
             r_listView.setVisibility(View.VISIBLE);
-            c1.setVisibility(View.GONE);
+            linear.setVisibility(View.GONE);
         }
     }
 

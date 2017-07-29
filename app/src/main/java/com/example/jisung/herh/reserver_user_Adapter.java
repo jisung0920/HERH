@@ -1,8 +1,6 @@
 package com.example.jisung.herh;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.support.annotation.ColorInt;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +10,15 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 /**
- * Created by jisung on 2017-07-21.
+ * Created by jisung on 2017-07-29.
  */
 
-public class reserver_alAdapter extends BaseAdapter {
+public class reserver_user_Adapter extends BaseAdapter {
+
     Context context;
     ArrayList<reserver_al> alist;
 
-    public reserver_alAdapter(Context context, ArrayList<reserver_al> alist) {
+    public reserver_user_Adapter(Context context, ArrayList<reserver_al> alist) {
         this.context = context;
         this.alist = alist;
     }
@@ -49,7 +48,7 @@ public class reserver_alAdapter extends BaseAdapter {
         TextView state = (TextView)convertView.findViewById(R.id.state);
         date.setText(alist.get(position).getDate());
         time.setText(alist.get(position).getTime().substring(0,5)+"시");
-        num.setText(alist.get(position).getNum()+"("+alist.get(position).getError()+")"+"명");
+        num.setText(alist.get(position).getName());
         int i = alist.get(position).getAllow();
         switch (i) {
             case 0:

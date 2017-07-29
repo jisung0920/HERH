@@ -24,6 +24,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,7 +34,7 @@ public class User_ResActivity extends AppCompatActivity {
     ArrayList<reserver> list;
     ListView listView;
     reserverAdapter adapter;
-    String store;
+    String store,user_id;
     String dateText;
     String nowDate;
 
@@ -44,6 +45,7 @@ public class User_ResActivity extends AppCompatActivity {
         list = new ArrayList<reserver>();  //Menu형태의 리스트를 생성한다.
         Intent getintent = getIntent();
         store = getintent.getStringExtra("store");
+        user_id = getintent.getStringExtra("id");
         long now = System.currentTimeMillis();
         Date date = new Date(now);
         SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy-MM-dd");
@@ -54,7 +56,7 @@ public class User_ResActivity extends AppCompatActivity {
 
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 View r_view = View.inflate(view.getContext(), R.layout.r_list, null);   //뷰 가져오기
-                dateText =year + "-" + (month + 1) + "-" + dayOfMonth;
+                dateText = dateCovert(year + "-" + (month + 1) + "-" + dayOfMonth);
                 getDbData("http://jisung0920.cafe24.com/hers.php"); //서버에서 데이터 가져오는 함수 호출
                 final AlertDialog.Builder dialog = new AlertDialog.Builder(view.getContext()); //대화상자 생성
                 dialog.setView(r_view); //대화상자 뷰 설정
@@ -62,16 +64,16 @@ public class User_ResActivity extends AppCompatActivity {
                 TextView s_date = (TextView) r_view.findViewById(R.id.textView2); //택스트 뷰 가져오기
                 s_date.setText(dateText); // 텍스트 뷰 설정
                 Button button = (Button) r_view.findViewById(R.id.button); // 버튼 뷰 가져오기
-                Log.d("test11",nowDate+"-"+dateText);
                 if(nowDate.compareTo(dateText)>0)
-                    button.setVisibility(View.GONE);
+                    button.setVisibility(View.INVISIBLE);
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) { //버튼 클릭 이번트 설정
                         Intent intent = new Intent(User_ResActivity.this, ReserveActivity.class); //인텐드 생성 및 설정
                         intent.putExtra("date",dateText);
                         intent.putExtra("store",store);
-
+                        intent.putExtra("id",user_id);
+                        Log.d("test11","idchecl"+user_id);
                         startActivity(intent); // 인텐트 실행
                     }
                 });
@@ -84,6 +86,18 @@ public class User_ResActivity extends AppCompatActivity {
         });
         TextView store_name = (TextView) findViewById(R.id.textView);
         store_name.setText(store);
+    }
+    private  String dateCovert(String str){
+        SimpleDateFormat dateFormat = new  SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault());
+        Date date = null;
+        try {
+            date = dateFormat.parse(str);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Log.d("test11D",dateFormat
+                    .format(date));
+        return dateFormat.format(date);
     }
 
     private void getDbData(String string) { // 서버의 DB에서 data 가져오는 메소드

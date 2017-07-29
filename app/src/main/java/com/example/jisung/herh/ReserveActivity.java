@@ -33,13 +33,14 @@ public class ReserveActivity extends AppCompatActivity {
 
 
     private TextView date,store;
-    private String store_name, day_infor;
+    private String store_name, day_infor,user_id;
 
     protected void init(){  // 정보 저장
 
         Intent intent = getIntent();
         store_name = intent.getStringExtra("store");
         day_infor = intent.getStringExtra("date");
+        user_id = intent.getStringExtra("id");
 
         date = (TextView) findViewById(R.id.date);
         store = (TextView) findViewById(R.id.store);
@@ -107,7 +108,7 @@ public class ReserveActivity extends AppCompatActivity {
 
             Button yes = (Button) dlgview.findViewById((R.id.yes));
             Button no = (Button) dlgview.findViewById((R.id.no));
-            final String userID ="test@test.com";
+
 
             //예약 확인시
             yes.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +116,7 @@ public class ReserveActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     try {
                         PHPRequest request = new PHPRequest("http://127.0.0.1/test/Data_insert.php");//밑에꺼 다시
-                        String result = request.PhPtest(userID,user,phone_Num,date.toString(),time,people_Num,error.toString(),store.toString());
+                        String result = request.PhPtest(user_id,user,phone_Num,date.toString(),time,people_Num,error.toString(),store.toString());
                         if(result.equals("1")){
                             Toast.makeText(getApplication(),"저장되었습니다.",Toast.LENGTH_SHORT).show();
                         }
@@ -128,7 +129,9 @@ public class ReserveActivity extends AppCompatActivity {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                    Log.d("test11","idchecl"+user_id);
                     Intent save = new Intent(ReserveActivity.this, MainActivity.class);
+                    save.putExtra("id",user_id);
                     startActivity(save);
                     finish();
 

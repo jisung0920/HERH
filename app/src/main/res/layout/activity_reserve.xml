@@ -9,152 +9,172 @@
     android:weightSum="100"
     tools:context="com.example.jisung.herh.ReserveActivity">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="10"
-        android:background="@color/loginButton"
-        android:orientation="vertical">
-        <TextView
-            android:layout_gravity="center"
-            android:textColor="@color/text"
-            android:id="@+id/store"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="한신포차"
-            android:textSize="20dp"/>
-        <TextView
-            android:gravity="center"
-            android:textColor="@color/text"
-            android:id="@+id/date"
-            android:text="2017년 6월 20일"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
+        android:layout_weight="10">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/loginButton"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/store"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="한신포차"
+                android:textColor="@color/text"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="2017년 6월 20일"
+                android:textColor="@color/text" />
+        </LinearLayout>
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/hers_main_logo_2"/>
+    </FrameLayout>
 
     <TextView
-        android:layout_marginLeft="10dp"
-        android:gravity="center_vertical"
-        android:layout_weight="5"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="5"
+        android:gravity="center_vertical"
         android:text="인원"
         android:textColor="@color/text"
-        android:textSize="20dp"/>
-    <LinearLayout
+        android:textSize="20dp" />
 
-        android:layout_weight="20"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_weight="20"
         android:background="@drawable/xml_border"
         android:orientation="horizontal"
         android:weightSum="100">
+
         <EditText
-            android:inputType="number"
-            android:textSize="30dp"
-            android:textColor="@color/text"
+            android:nextFocusDown="@+id/name"
+            android:maxLength="3"
             android:id="@+id/people_Num"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="50dp"
             android:layout_weight="20"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"/>
-        <TextView
+            android:inputType="number"
             android:textColor="@color/text"
+            android:textSize="30dp" />
 
-            android:layout_weight="30"
+        <TextView
             android:layout_width="0dp"
+
             android:layout_height="match_parent"
+            android:layout_weight="30"
+            android:gravity="center"
             android:text="명"
-            android:textSize="20dp"
-            android:gravity="center"/>
+            android:textColor="@color/text"
+            android:textSize="20dp" />
+
         <NumberPicker
             android:id="@+id/error"
-            android:layout_marginLeft="20dp"
-            android:layout_weight="20"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"></NumberPicker>
-        <TextView
-            android:textColor="@color/text"
-            android:layout_weight="30"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="20"></NumberPicker>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="30"
+            android:gravity="center"
             android:text="오차인원"
-            android:textSize="20dp"
-            android:gravity="center"/></LinearLayout>
+            android:textColor="@color/text"
+            android:textSize="20dp" />
+    </LinearLayout>
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_marginLeft="10dp"
-        android:textColor="@color/text"
         android:layout_marginTop="10dp"
         android:layout_weight="5"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:text="예약시간"
         android:gravity="center_vertical"
-        android:textSize="20dp"/>
+        android:text="예약시간"
+        android:textColor="@color/text"
+        android:textSize="20dp" />
 
     <TimePicker
-        android:background="@drawable/xml_border"
         android:id="@+id/time"
-        android:layout_weight="20"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_weight="20"
+        android:background="@drawable/xml_border"
         android:timePickerMode="spinner"></TimePicker>
 
     <TextView
-        android:layout_marginLeft="10dp"
-        android:textColor="@color/text"
-        android:gravity="center_vertical"
-        android:layout_weight="8"
+
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="8"
+        android:gravity="center_vertical"
         android:text="예약자 명"
-        android:textSize="20dp"/>
+        android:textColor="@color/text"
+        android:textSize="20dp" />
 
     <EditText
-        android:textColorHint="@color/text"
-        android:textColor="@color/text"
-        android:gravity="center"
+        android:maxLength="10"
         android:id="@+id/name"
-        android:background="@drawable/xml_border"
-        android:layout_weight="8"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_weight="8"
+        android:background="@drawable/xml_border"
+        android:gravity="center"
+        android:hint="ex)학회 알파"
+        android:nextFocusDown="@+id/phoneNum"
         android:imeOptions="actionDone"
         android:inputType="text"
-        android:hint="ex)학회 알파"/>
+        android:textColor="@color/text"
+        android:textColorHint="@color/text" />
 
     <TextView
-        android:layout_marginLeft="10dp"
-        android:textColor="@color/text"
-        android:gravity="center_vertical"
-        android:layout_weight="8"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="8"
+        android:gravity="center_vertical"
         android:text="연락처"
-        android:textSize="20dp"/>
+        android:textColor="@color/text"
+        android:textSize="20dp" />
 
     <EditText
-        android:background="@drawable/xml_border"
-        android:gravity="center"
-        android:textColor="@color/text"
+        android:maxLength="12"
         android:id="@+id/phoneNum"
-        android:layout_weight="8"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_weight="8"
+        android:hint="-없이 입력하세요"
+        android:background="@drawable/xml_border"
+        android:gravity="center"
         android:inputType="number"
-        />
+        android:textColor="@color/text" />
 
     <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:layout_gravity="center"
+        android:layout_weight="8"
         android:background="@color/loginBtnOn"
         android:onClick="onClick"
-        android:id="@+id/button"
-        android:layout_weight="8"
-        android:layout_width="match_parent"
-        android:layout_gravity="center"
-        android:layout_height="8dp"
-        android:text="예약"
-        />
+        android:text="예약" />
 
 </LinearLayout>

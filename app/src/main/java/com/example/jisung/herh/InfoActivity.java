@@ -33,7 +33,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 
 public class InfoActivity extends AppCompatActivity implements OnMapReadyCallback{
-    String store;
+    String store,user_id;
     TextView info;
     ImageView rest;
     int img;
@@ -51,6 +51,7 @@ public class InfoActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         Intent getintent = getIntent();
         store = getintent.getStringExtra("store");
+        user_id = getintent.getStringExtra("id");
         img = getintent.getIntExtra("image", R.drawable.sample1);
         getDbData("http://jisung0920.cafe24.com/hers_s_info.php");
         rest.setImageResource(img);
@@ -132,6 +133,8 @@ public class InfoActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void resClick(View v){
         Intent intent = new Intent(InfoActivity.this, User_ResActivity.class);
         intent.putExtra("store", store);
+        intent.putExtra("id",user_id);
+        Log.d("test11","idchecl"+user_id);
         startActivity(intent);
     }
 }

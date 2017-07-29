@@ -56,6 +56,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         init();
+
+
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -71,6 +73,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         signInButton = (SignInButton) findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_STANDARD);
         signInButton.setScopes(gso.getScopeArray());
+
+
 
         findViewById(R.id.sign_in_button).setOnClickListener(this);
 
@@ -91,11 +95,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             userBtn.setBackgroundResource(R.color.loginButton);
             userScreen.setVisibility(View.INVISIBLE);
             hostScreen.setVisibility(View.VISIBLE);
+            if(!codeS.equals("")){
+//                gethostData("http://jisung0920.cafe24.com/hers_host_info.php");
+            }
 
         }//화면 변경
         else if (v.getId() == R.id.login) {
-            editor.putString("code", code.getText().toString());
-            editor.commit();
             codeS = code.getText().toString();
             gethostData("http://jisung0920.cafe24.com/hers_host_info.php");
 
@@ -115,6 +120,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         userScreen = (LinearLayout) findViewById(R.id.screen_user);
         hostScreen = (LinearLayout) findViewById(R.id.screen_host);
         code.setText(tmp.getString("code", ""));
+        codeS = code.getText().toString();
     }
 
     private void signIn() {
@@ -210,10 +216,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 //doinbackgroud 의 return인 sb.toString().trim()이 result로 온다.
 
                 try {
+                    editor.putString("code", code.getText().toString());
+                    editor.commit();
                     intent = new Intent(LoginActivity.this, ResCheckActivity.class);
                     intent.putExtra("store", result);//tmp
                     startActivity(intent);
-                    finish();
+//                    finish();
 
                 } catch (Exception e) {
                     Toast.makeText(LoginActivity.this, "코드를 확인해주세요.", Toast.LENGTH_SHORT).show();
