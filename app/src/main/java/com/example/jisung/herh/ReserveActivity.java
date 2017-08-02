@@ -90,6 +90,7 @@ public class ReserveActivity extends AppCompatActivity {
         else {
             View dlgview = View.inflate(this, R.layout.pop_up, null);
             final AlertDialog.Builder dlg = new AlertDialog.Builder(this);
+
             final TextView store_title = (TextView)dlgview.findViewById(R.id.store_name);
             final TextView user_infor = (TextView) dlgview.findViewById(R.id.team_Infor);
             final TextView peo_infor = (TextView) dlgview.findViewById(R.id.peo_Infor);

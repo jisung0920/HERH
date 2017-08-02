@@ -1,12 +1,15 @@
 package com.example.jisung.herh;
 
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.support.v7.app.AppCompatActivity;
@@ -58,8 +61,14 @@ public class User_ResActivity extends AppCompatActivity {
                 View r_view = View.inflate(view.getContext(), R.layout.r_list, null);   //뷰 가져오기
                 dateText = dateCovert(year + "-" + (month + 1) + "-" + dayOfMonth);
                 getDbData("http://jisung0920.cafe24.com/hers.php"); //서버에서 데이터 가져오는 함수 호출
-                final AlertDialog.Builder dialog = new AlertDialog.Builder(view.getContext()); //대화상자 생성
-                dialog.setView(r_view); //대화상자 뷰 설정
+                final Dialog dialog = new Dialog(User_ResActivity.this); //대화상자 생성
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(r_view);
+                WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
+                params.width =1200;
+                params.height = 1500;
+                dialog.getWindow().setAttributes(params);
+
                 listView = (ListView) r_view.findViewById(R.id.list_item); //리스트 뷰 가져오기
                 TextView s_date = (TextView) r_view.findViewById(R.id.textView2); //택스트 뷰 가져오기
                 s_date.setText(dateText); // 텍스트 뷰 설정
