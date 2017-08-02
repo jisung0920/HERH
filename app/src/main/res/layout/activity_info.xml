@@ -9,63 +9,213 @@
     android:weightSum="10"
     tools:context="com.example.jisung.herh.InfoActivity">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-
-        <ImageView
-            android:id="@+id/restView"
+        <TextView
+            android:textColor="@color/textW"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
-            android:scaleType="fitXY"
-            android:src="@drawable/sample1" />
+            android:layout_height="match_parent"
+            android:background="@color/loginBtnOn"
+            android:gravity="center"
+            android:text="가게명"
+            android:id="@+id/title"
+            android:textSize="24sp" />
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/hers_main_logo_2"/>
+    </FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="horizontal"
+        android:weightSum="5">
 
+        <GridLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:rowCount="3"
+            android:layout_gravity="center"
+            android:columnCount="2"
+            android:paddingTop="10dp"
+            android:paddingLeft="5dp"
+            >
+            <TextView
+                android:textColor="@color/text"
+                android:textSize="20dp"
+                android:text="전화번호 : "/>
+            <TextView
+                android:id="@+id/tel"
+                android:textColor="@color/text"
+                android:textSize="20dp"
+                android:text="00000000"/>
+            <TextView
+
+                android:textColor="@color/text"
+                android:textSize="20dp"
+                android:text="영업시간 : "/>
+            <TextView
+                android:textColor="@color/text"
+                android:textSize="20dp"
+                android:id="@+id/openTime"
+                android:text="0000-0000"
+                />
+            <TextView
+                android:textColor="@color/text"
+                android:textSize="20dp"
+                android:text="수용인원 : "/>
+            <TextView
+                android:textColor="@color/text"
+                android:textSize="20dp"
+                android:id="@+id/maxNum"
+                android:text="100명"/>
+        </GridLayout>
+
+
+    </LinearLayout>
+
+    <GridLayout
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.8"
+        android:rowCount="5"
+        android:columnCount="4"
+        android:background="@drawable/xml_border"
+        android:paddingTop="10dp"
+        android:paddingLeft="25dp"
+        >
+        <TextView
+            android:textColor="@color/text"
+            android:textSize="20dp"
+            android:text="test"
+            android:id="@+id/S_item1"/>
+        <TextView
+            android:textColor="@color/text"
+            android:textSize="20dp"
+            android:text="test"
+            android:id="@+id/S_item1_p"/>
+        <TextView
+            android:textColor="@color/text"
+            android:textSize="20dp"
+            android:text="test"
+            android:id="@+id/A_item1"/>
+        <TextView
+            android:textColor="@color/text"
+            android:textSize="20dp"
+            android:text="test"
+            android:id="@+id/A_item1_p"/>
+        <TextView
+            android:textColor="@color/text"
+            android:textSize="20dp"
+            android:text="test"
+            android:id="@+id/S_item2"/>
+        <TextView
+            android:textColor="@color/text"
+            android:textSize="20dp"
+            android:text="test"
+            android:id="@+id/S_item2_p"/>
+        <TextView
+            android:textColor="@color/text"
+            android:textSize="20dp"
+            android:text="test"
+            android:id="@+id/A_item2"/>
+        <TextView
+            android:textColor="@color/text"
+            android:textSize="20dp"
+            android:text="test"
+            android:id="@+id/A_item2_p"/>
+        <TextView
+            android:textColor="@color/text"
+            android:textSize="20dp"
+            android:text="test"
+            android:id="@+id/S_item3"/>
+        <TextView
+            android:textColor="@color/text"
+            android:textSize="20dp"
+            android:text="test"
+            android:id="@+id/S_item3_p"/>
+        <TextView
+            android:textColor="@color/text"
+            android:textSize="20dp"
+            android:text="test"
+            android:id="@+id/A_item3"/>
+        <TextView
+            android:textColor="@color/text"
+            android:textSize="20dp"
+            android:text="test"
+            android:id="@+id/A_item3_p"/>
+        <TextView
+            android:textColor="@color/text"
+            android:textSize="20dp"
+            android:text="test"
+            android:id="@+id/S_item4"/>
+        <TextView
+            android:textColor="@color/text"
+            android:textSize="20dp"
+            android:text="test"
+            android:id="@+id/S_item4_p"/>
+        <TextView
+            android:textColor="@color/text"
+            android:textSize="20dp"
+            android:text="test"
+            android:id="@+id/A_item4"/>
+        <TextView
+            android:textColor="@color/text"
+            android:textSize="20dp"
+            android:text="test"
+            android:id="@+id/A_item4_p"/>
+        <TextView
+            android:textColor="@color/text"
+            android:textSize="20dp"
+            android:text="test"
+            android:id="@+id/S_item5"/>
+        <TextView
+            android:textColor="@color/text"
+            android:textSize="20dp"
+            android:text="test"
+            android:id="@+id/S_item5_p"/>
+        <TextView
+            android:textColor="@color/text"
+            android:textSize="20dp"
+            android:text="test"
+            android:id="@+id/A_item5"/>
+        <TextView
+            android:textColor="@color/text"
+            android:textSize="20dp"
+            android:text="test"
+            android:id="@+id/A_item5_p"/>
+        </GridLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="0.1"
+    android:background="@color/textW"></LinearLayout>
 
     <fragment
         android:id="@+id/map"
         class="com.google.android.gms.maps.MapFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="2"
-    android:weightSum="4"
-    android:orientation="horizontal">
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:text="가게명"/>
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:text="가게번호"/>
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:text="수용인원 : "/>
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:text="100명"/>
-</LinearLayout>
-
-    <TextView
-        android:text="가게설명"
-        android:id="@+id/restInfo"
+        android:layout_weight="3" />
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3" />
+        android:layout_weight="0.1"
+        android:background="@color/textW"></LinearLayout>
+
 
     <Button
         android:id="@+id/reserve"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="15dp"
+        android:layout_margin="10dp"
         android:layout_weight="1"
         android:background="@color/loginBtnOn"
         android:onClick="resClick"

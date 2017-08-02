@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.icu.util.Calendar;
+import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,21 +22,37 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.sql.Time;
+import java.util.Scanner;
+
+import static com.example.jisung.herh.R.layout.r_list;
 
 public class ReserveActivity extends AppCompatActivity {
-    private TimePicker time;
+    private TimePicker timer;
     private EditText peopleNum, phoneNum, name;
     private NumberPicker error;
+
+    private String user, phone_Num, people_Num, time;
+    private int error_Num, hour, min;
     // 유저 정보
 
 
-    private TextView date,store;
-    private String store_name, day_infor,user_id;
+    private TextView date, store;
+    private String store_name, day_infor, user_id;
 
-    protected void init(){  // 정보 저장
+    protected void init() {  // 정보 저장
 
         Intent intent = getIntent();
         store_name = intent.getStringExtra("store");
@@ -49,7 +66,7 @@ public class ReserveActivity extends AppCompatActivity {
         date.setText(day_infor);        // 날짜 변경
         store.setText(store_name);      // 가게명 변경
 
-        time = (TimePicker) findViewById(R.id.time);
+        timer = (TimePicker) findViewById(R.id.time);
 
         peopleNum = (EditText) findViewById(R.id.people_Num);
 
@@ -63,27 +80,89 @@ public class ReserveActivity extends AppCompatActivity {
         phoneNum = (EditText) findViewById(R.id.phoneNum);  //전화번호
 
     }
+
+    protected void send_Data(String string) {
+        class Send_Data extends AsyncTask<String, Void, String> {
+            String loginResult(InputStream in) {
+                String data = "";
+                Scanner s = new Scanner(in);
+                data += s.nextLine();
+                s.close();
+                return data;}
+
+            @Override
+            protected String doInBackground(String... params) {
+                String uri = params[0]; //params에 php 주소가 있으므로 uri에 주소가 들어간다.
+                try {
+                    URL url = new URL(uri);//url 객체가 생성된다.
+                    HttpURLConnection con = (HttpURLConnection) url.openConnection(); //url을 연결하기 위한 객체 con을 생성
+                    con.setRequestMethod("POST");
+                    con.setDoOutput(true);
+                    String postData = "userID=" + URLEncoder.encode(user_id) + "&userName=" + URLEncoder.encode(user) + "&Tel=" + URLEncoder.encode(phone_Num) +
+                            "&date=" + URLEncoder.encode(day_infor) + "&time=" + URLEncoder.encode(time) + "&number=" + URLEncoder.encode(people_Num) + "&error=" +
+                            URLEncoder.encode(error_Num + "") + "&store=" + URLEncoder.encode(store_name);
+                    OutputStream outputStream = con.getOutputStream();
+                    outputStream.write(postData.getBytes("UTF-8"));
+                    Log.d("hello",postData);
+                    outputStream.flush();
+                    outputStream.close();
+
+                    InputStream inputStream = con.getInputStream();
+                    String result = loginResult(inputStream);
+                    Log.d("hello",result);
+                    inputStream.close();
+                    con.disconnect();
+                    return result;//onPostExecute실행
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+
+                Log.d("teset",result);
+                if (result.equals("SUC")) {
+                    Toast.makeText(ReserveActivity.this, "예약 되었습니다.", Toast.LENGTH_SHORT).show();
+                    Intent save = new Intent(ReserveActivity.this, MainActivity.class);
+                    save.putExtra("id",user_id);
+                    startActivity(save);
+                    finish();
+                }
+                else{
+                    Toast.makeText(ReserveActivity.this, "예약에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+
+        Send_Data g = new Send_Data();
+        g.execute(string);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reserve);
-        numberPickerTextColor((NumberPicker)findViewById(R.id.error), Color.BLACK );
-        dateTimePickerTextColour((TimePicker)findViewById(R.id.time),Color.BLACK);
+        numberPickerTextColor((NumberPicker) findViewById(R.id.error), Color.BLACK);
+        dateTimePickerTextColour((TimePicker) findViewById(R.id.time), Color.BLACK);
         init();
     }
 
     public void onClick(View v) {
 
-        final String user = name.getText().toString();
-        final String phone_Num = phoneNum.getText().toString();
-        final String people_Num = peopleNum.getText().toString();
-        final int error_Num = error.getValue();
-        final int hour = time.getHour();
-        final int min = time.getMinute();
-        final String time = hour+":"+min+":00";
+        user = name.getText().toString();
+        phone_Num = phoneNum.getText().toString();
+        people_Num = peopleNum.getText().toString();
+        error_Num = error.getValue();
+        hour = timer.getHour();
+        min = timer.getMinute();
+        time = hour + ":" + min + ":00";
 
         // 입력이 다 이뤄지지 않을 경우
-        if (people_Num.equals("") || user.equals("") || phone_Num.equals("")){
+        if (people_Num.equals("") || user.equals("") || phone_Num.equals("")) {
             Toast.makeText(this, "모든 정보를 입력하세요.", Toast.LENGTH_SHORT).show();
         }
         // 입력이 다 이뤄진 경우
@@ -91,12 +170,12 @@ public class ReserveActivity extends AppCompatActivity {
             View dlgview = View.inflate(this, R.layout.pop_up, null);
             final AlertDialog.Builder dlg = new AlertDialog.Builder(this);
 
-            final TextView store_title = (TextView)dlgview.findViewById(R.id.store_name);
+            final TextView store_title = (TextView) dlgview.findViewById(R.id.store_name);
             final TextView user_infor = (TextView) dlgview.findViewById(R.id.team_Infor);
             final TextView peo_infor = (TextView) dlgview.findViewById(R.id.peo_Infor);
             final TextView phone_infor = (TextView) dlgview.findViewById(R.id.phone_Infor);
             final TextView time_infor = (TextView) dlgview.findViewById(R.id.time_Infor);
-            final TextView date_infor = (TextView)dlgview.findViewById(R.id.date_Infor);
+            final TextView date_infor = (TextView) dlgview.findViewById(R.id.date_Infor);
             store_title.setText(store_name);
             user_infor.setText(user);
             time_infor.setText(hour + "시 " + min + "분");
@@ -115,26 +194,7 @@ public class ReserveActivity extends AppCompatActivity {
             yes.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    try {
-                        PHPRequest request = new PHPRequest("http://127.0.0.1/test/Data_insert.php");//밑에꺼 다시
-                        String result = request.PhPtest(user_id,user,phone_Num,date.toString(),time,people_Num,error.toString(),store.toString());
-                        if(result.equals("1")){
-                            Toast.makeText(getApplication(),"저장되었습니다.",Toast.LENGTH_SHORT).show();
-                        }
-                        else{
-                            Toast.makeText(getApplication(),"?",Toast.LENGTH_SHORT).show();
-                        }
-                    }catch (MalformedURLException e){
-                        e.printStackTrace();
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    Log.d("test11","idchecl"+user_id);
-                    Intent save = new Intent(ReserveActivity.this, MainActivity.class);
-                    save.putExtra("id",user_id);
-                    startActivity(save);
-                    finish();
+                    send_Data("http://jisung0920.cafe24.com/hers_data_send.php");
 
                 }
             });
@@ -147,32 +207,35 @@ public class ReserveActivity extends AppCompatActivity {
             });
         }
     }
-    void numberPickerTextColor( NumberPicker $v, int $c ){
-        for(int i = 0, j = $v.getChildCount() ; i < j; i++){
+
+    void numberPickerTextColor(NumberPicker $v, int $c) {
+        for (int i = 0, j = $v.getChildCount(); i < j; i++) {
             View t0 = $v.getChildAt(i);
-            if( t0 instanceof EditText ){
-                try{
-                    Field t1 = $v.getClass() .getDeclaredField( "mSelectorWheelPaint" );
+            if (t0 instanceof EditText) {
+                try {
+                    Field t1 = $v.getClass().getDeclaredField("mSelectorWheelPaint");
                     t1.setAccessible(true);
-                    ((Paint)t1.get($v)) .setColor($c);
-                    ((EditText)t0) .setTextColor($c);
+                    ((Paint) t1.get($v)).setColor($c);
+                    ((EditText) t0).setTextColor($c);
                     $v.invalidate();
-                }catch(Exception e){}
+                } catch (Exception e) {
+                }
             }
         }
     }
-    void dateTimePickerTextColour(ViewGroup $picker, int $c ){
 
-        for( int i = 0, j = $picker.getChildCount() ; i < j ; i++ ){
-            View t0 = (View)$picker.getChildAt(i);
+    void dateTimePickerTextColour(ViewGroup $picker, int $c) {
+
+        for (int i = 0, j = $picker.getChildCount(); i < j; i++) {
+            View t0 = (View) $picker.getChildAt(i);
 
             //NumberPicker는 아까만든 함수로 발라내고
-            if(t0 instanceof NumberPicker) numberPickerTextColor( (NumberPicker)t0, $c );
+            if (t0 instanceof NumberPicker) numberPickerTextColor((NumberPicker) t0, $c);
 
                 //아니면 계속 돌아봐
-            else if(t0 instanceof ViewGroup) dateTimePickerTextColour( (ViewGroup)t0, $c );
+            else if (t0 instanceof ViewGroup) dateTimePickerTextColour((ViewGroup) t0, $c);
         }
     }
-
-
 }
+
+

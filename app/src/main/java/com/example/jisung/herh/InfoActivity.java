@@ -1,6 +1,10 @@
 package com.example.jisung.herh;
 
+import android.content.Context;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,6 +28,7 @@ import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -31,44 +36,52 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.List;
 
-public class InfoActivity extends AppCompatActivity implements OnMapReadyCallback{
-    String store,user_id;
-    TextView info;
-    ImageView rest;
+public class InfoActivity extends AppCompatActivity implements OnMapReadyCallback {
+    String store, user_id;
+    TextView store_name, tel, max_number, open_Time;
+    MapFragment mapFragment;
+    Double Lat = 0.0;
+    Double Lon = 0.0;
+    Geocoder mCoder;
+    FragmentManager fragmentManager;
+
+
     int img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
-        info = (TextView)findViewById(R.id.restInfo);
-        rest = (ImageView)findViewById(R.id.restView);
-
-        FragmentManager fragmentManager = getFragmentManager();
-        MapFragment mapFragment = (MapFragment)fragmentManager.findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        store_name = (TextView) findViewById(R.id.title);
+        tel = (TextView) findViewById(R.id.tel);
+        max_number = (TextView) findViewById(R.id.maxNum);
+        open_Time = (TextView) findViewById(R.id.openTime);
 
         Intent getintent = getIntent();
         store = getintent.getStringExtra("store");
         user_id = getintent.getStringExtra("id");
         img = getintent.getIntExtra("image", R.drawable.sample1);
+        store_name.setText(store);
+        mCoder = new Geocoder(this);
         getDbData("http://jisung0920.cafe24.com/hers_s_info.php");
-        rest.setImageResource(img);
+
+
+
+
     }
+
 
     @Override
     public void onMapReady(final GoogleMap map) {
-        LatLng SEOUL = new LatLng(37.56, 126.97);
-
+        LatLng SEOUL = new LatLng(Lat, Lon);
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(SEOUL);
-        markerOptions.title("서울");
-        markerOptions.snippet("한국의 수도");
+        markerOptions.title(store);
         map.addMarker(markerOptions);
-
         map.moveCamera(CameraUpdateFactory.newLatLng(SEOUL));
-        map.animateCamera(CameraUpdateFactory.zoomTo(10));
+        map.animateCamera(CameraUpdateFactory.zoomTo(16));
     }
 
     private void getDbData(String string) { // 서버의 DB에서 data 가져오는 메소드
@@ -100,7 +113,7 @@ public class InfoActivity extends AppCompatActivity implements OnMapReadyCallbac
                     bufferedReader.close();
                     inputStream.close();
                     con.disconnect();
-                    Log.d("check11",stringBuilder.toString().trim());
+                    Log.d("check11", stringBuilder.toString().trim());
                     return stringBuilder.toString().trim();//onPostExecute실행
 
                     //받아온 데이터를 StringBuilder 의 형태로 만든다.
@@ -117,11 +130,30 @@ public class InfoActivity extends AppCompatActivity implements OnMapReadyCallbac
                 try {
                     JSONObject jsonObject = new JSONObject(result);//jsonObject 형태로 위에서 데이터들을 포멧한다.
                     JSONArray reserveData = jsonObject.getJSONArray("response"); //json형태에서 response라는 키를 갖는 배열을 가져온다.
+                    String str = "";
                     for (int i = 0; i < reserveData.length(); i++) { //배열의 길이만큼 반복해서 더한다.
                         JSONObject object = reserveData.getJSONObject(i);
-                        info.setText(object.getString("store_script"));
+                        tel.setText(object.getString("store_tel"));
+                        max_number.setText(object.getString("max_number"));
+                        str = object.getString("store_address");
+                        open_Time.setText(object.getString("open_Time"));
                     }
+
+                    //주소값을 통하여 로케일을 받아온다
+
+                    List<Address> addr = mCoder.getFromLocationName(str, 1);
+                    Lat = addr.get(0).getLatitude();
+                    Lon = addr.get(0).getLongitude();
+                    fragmentManager = getFragmentManager();
+                    mapFragment = (MapFragment) fragmentManager.findFragmentById(R.id.map);
+                    mapFragment.getMapAsync(InfoActivity.this);
+
+                    //해당 로케일로 좌표를 구성한다
+
+
                 } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
@@ -130,11 +162,12 @@ public class InfoActivity extends AppCompatActivity implements OnMapReadyCallbac
         g.execute(string); //doinBackground 메소드를 실행시킨다.
     }
 
-    public void resClick(View v){
+
+    public void resClick(View v) {
         Intent intent = new Intent(InfoActivity.this, User_ResActivity.class);
         intent.putExtra("store", store);
-        intent.putExtra("id",user_id);
-        Log.d("test11","idchecl"+user_id);
+        intent.putExtra("id", user_id);
+        Log.d("test11", "idchecl" + user_id);
         startActivity(intent);
     }
 }
