@@ -6,27 +6,51 @@
     android:weightSum="10"
     android:background="@color/background"
     >
-
-    <TextView
-        android:layout_margin="10dp"
-        android:id="@+id/textView2"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:text="TextView"
-        android:textColor="#000"
-        />
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/loginButton"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/store"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="예약정보"
+                android:textColor="@color/text"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:text="TextView"
+                android:textColor="@color/text"
+                />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/hers_main_logo_2"/>
+    </FrameLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:weightSum="3"
         android:orientation="horizontal"
-        android:layout_weight="1">
+        android:layout_weight="0.5">
         <TextView
-            android:textColor="#000"
-            android:textStyle="bold"
+            android:textColor="@color/text"
             android:textSize="15dp"
             android:gravity="center"
             android:text="시간"
@@ -34,8 +58,7 @@
             android:layout_weight="1"
             android:layout_height="match_parent" />
         <TextView
-            android:textColor="#000"
-            android:textStyle="bold"
+            android:textColor="@color/text"
             android:textSize="15dp"
             android:gravity="center"
             android:text="예약자"
@@ -43,8 +66,7 @@
             android:layout_weight="1"
             android:layout_height="match_parent" />
         <TextView
-            android:textColor="#000"
-            android:textStyle="bold"
+            android:textColor="@color/text"
             android:textSize="15dp"
             android:gravity="center"
             android:text="인원"
@@ -54,20 +76,20 @@
     </LinearLayout>
 
     <ListView
+        android:layout_margin="5dp"
         android:id="@+id/list_item"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="6.5" />
+        android:layout_weight="7.5" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_weight="1.5"
+        android:layout_weight="1"
         android:layout_marginTop="10dp"
         android:text="예약하기"
-        android:layout_marginBottom="15dp"
+        android:layout_margin="15dp"
         android:background="@color/loginBtnOn"/>
 
 </LinearLayout>

@@ -31,6 +31,7 @@
                 android:textSize="20dp" />
 
             <TextView
+                android:text="email"
                 android:id="@+id/userInfo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -47,13 +48,34 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:weightSum="7"
         android:orientation="horizontal">
-
-        <CheckBox
-            android:text="push"
-            android:layout_width="match_parent"
+        <TextView
+            android:textStyle="bold"
+            android:textColor="@color/text"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
             android:layout_height="match_parent" />
 
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="대기"
+            android:textColor="@color/text"
+            android:gravity="center"
+            android:background="@drawable/state_wait"
+            />
+        <TextView
+            android:gravity="center"
+            android:textSize="20dp"
+            android:textColor="@color/text"
+            android:text="2개"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
     </LinearLayout>
 
     <ListView

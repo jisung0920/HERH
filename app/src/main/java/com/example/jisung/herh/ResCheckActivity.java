@@ -81,8 +81,8 @@ public class ResCheckActivity extends AppCompatActivity {
                 adapter = new reserverAdapter(r_view.getContext(), list); //어뎁터 생성 및 설정
                 listView.setAdapter(adapter); //리스트뷰와 어뎁터 연결
                 WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
-                params.width=1200;
-                params.height=1500;
+                params.width=(WindowManager.LayoutParams.WRAP_CONTENT);
+                params.height=(WindowManager.LayoutParams.MATCH_PARENT);
                 dialog.getWindow().setAttributes(params);
                 dialog.show(); // 대화상자 보여주기
             }
