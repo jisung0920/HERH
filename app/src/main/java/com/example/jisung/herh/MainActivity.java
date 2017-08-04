@@ -18,6 +18,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity{
@@ -26,10 +29,11 @@ public class MainActivity extends AppCompatActivity{
     storeAdapter adapter;
     GridView list;
     private String user_id;
-
     protected void init(){
+
         Intent intent = getIntent();
         user_id = intent.getStringExtra("id");
+
     }
 
     @Override

@@ -2,11 +2,13 @@ package com.example.jisung.herh;
 
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -40,19 +42,13 @@ public class User_ResActivity extends AppCompatActivity {
     String store,user_id;
     String dateText;
     String nowDate;
-
+    Display display;
     @Override
       protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_res);
-        list = new ArrayList<reserver>();  //Menu형태의 리스트를 생성한다.
-        Intent getintent = getIntent();
-        store = getintent.getStringExtra("store");
-        user_id = getintent.getStringExtra("id");
-        long now = System.currentTimeMillis();
-        Date date = new Date(now);
-        SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy-MM-dd");
-        nowDate = sdfNow.format(date);
+        init();
+
 
         CalendarView calendar = (CalendarView) findViewById(R.id.calendarView3);
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -65,8 +61,8 @@ public class User_ResActivity extends AppCompatActivity {
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(r_view);
                 WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
-                params.width =1200;
-                params.height = 1500;
+                params.width = (int) (display.getWidth() * 0.8);
+                params.height = (int) (display.getHeight() * 0.6);
                 dialog.getWindow().setAttributes(params);
 
                 listView = (ListView) r_view.findViewById(R.id.list_item); //리스트 뷰 가져오기
@@ -95,6 +91,18 @@ public class User_ResActivity extends AppCompatActivity {
         });
         TextView store_name = (TextView) findViewById(R.id.textView);
         store_name.setText(store);
+    }
+
+    void init(){
+        display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+        list = new ArrayList<reserver>();  //Menu형태의 리스트를 생성한다.
+        Intent getintent = getIntent();
+        store = getintent.getStringExtra("store");
+        user_id = getintent.getStringExtra("id");
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+        SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy-MM-dd");
+        nowDate = sdfNow.format(date);
     }
     private  String dateCovert(String str){
         SimpleDateFormat dateFormat = new  SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault());

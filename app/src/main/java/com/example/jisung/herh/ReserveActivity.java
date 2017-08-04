@@ -1,6 +1,8 @@
 package com.example.jisung.herh;
 
+import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,8 +13,11 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
@@ -20,39 +25,32 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
+
 import java.net.URL;
 import java.net.URLEncoder;
-import java.sql.Time;
+
 import java.util.Scanner;
 
-import static com.example.jisung.herh.R.layout.r_list;
 
 public class ReserveActivity extends AppCompatActivity {
     private TimePicker timer;
     private EditText peopleNum, phoneNum, name;
     private NumberPicker error;
-
+    private Display display;
     private String user, phone_Num, people_Num, time;
     private int error_Num, hour, min;
     // 유저 정보
-
-
     private TextView date, store;
     private String store_name, day_infor, user_id;
 
+
+
     protected void init() {  // 정보 저장
+        display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
 
         Intent intent = getIntent();
         store_name = intent.getStringExtra("store");
@@ -74,9 +72,7 @@ public class ReserveActivity extends AppCompatActivity {
         error = (NumberPicker) findViewById(R.id.error); // 오차 인원
         error.setMinValue(0);
         error.setMaxValue(10);
-
         name = (EditText) findViewById(R.id.name);  // 팀 명
-
         phoneNum = (EditText) findViewById(R.id.phoneNum);  //전화번호
 
     }
@@ -88,8 +84,8 @@ public class ReserveActivity extends AppCompatActivity {
                 Scanner s = new Scanner(in);
                 data += s.nextLine();
                 s.close();
-                return data;}
-
+                return data;
+            }
             @Override
             protected String doInBackground(String... params) {
                 String uri = params[0]; //params에 php 주소가 있으므로 uri에 주소가 들어간다.
@@ -103,13 +99,11 @@ public class ReserveActivity extends AppCompatActivity {
                             URLEncoder.encode(error_Num + "") + "&store=" + URLEncoder.encode(store_name);
                     OutputStream outputStream = con.getOutputStream();
                     outputStream.write(postData.getBytes("UTF-8"));
-                    Log.d("hello",postData);
                     outputStream.flush();
                     outputStream.close();
 
                     InputStream inputStream = con.getInputStream();
                     String result = loginResult(inputStream);
-                    Log.d("hello",result);
                     inputStream.close();
                     con.disconnect();
                     return result;//onPostExecute실행
@@ -124,15 +118,14 @@ public class ReserveActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(String result) {
 
-                Log.d("teset",result);
+                Log.d("teset", result);
                 if (result.equals("SUC")) {
                     Toast.makeText(ReserveActivity.this, "예약 되었습니다.", Toast.LENGTH_SHORT).show();
                     Intent save = new Intent(ReserveActivity.this, MainActivity.class);
-                    save.putExtra("id",user_id);
+                    save.putExtra("id", user_id);
                     startActivity(save);
                     finish();
-                }
-                else{
+                } else {
                     Toast.makeText(ReserveActivity.this, "예약에 실패하였습니다.", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -168,7 +161,15 @@ public class ReserveActivity extends AppCompatActivity {
         // 입력이 다 이뤄진 경우
         else {
             View dlgview = View.inflate(this, R.layout.pop_up, null);
-            final AlertDialog.Builder dlg = new AlertDialog.Builder(this);
+//            final AlertDialog.Builder dlg = new AlertDialog.Builder(this);
+
+            final Dialog dialog = new Dialog(this); //대화상자 생성
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(dlgview); //대화상자 뷰 설정
+            WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
+
+            params.width = (int) (display.getWidth() * 0.9);
+            params.height = (int) (display.getHeight() * 0.5);
 
             final TextView store_title = (TextView) dlgview.findViewById(R.id.store_name);
             final TextView user_infor = (TextView) dlgview.findViewById(R.id.team_Infor);
@@ -182,9 +183,9 @@ public class ReserveActivity extends AppCompatActivity {
             date_infor.setText(day_infor);
             phone_infor.setText(phone_Num);
             peo_infor.setText(people_Num + "(" + error_Num + ")" + "명");
+            dialog.getWindow().setAttributes(params);
+            dialog.show();
 
-
-            final DialogInterface exit = dlg.setView(dlgview).show();
 
             Button yes = (Button) dlgview.findViewById((R.id.yes));
             Button no = (Button) dlgview.findViewById((R.id.no));
@@ -195,6 +196,7 @@ public class ReserveActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     send_Data("http://jisung0920.cafe24.com/hers_data_send.php");
+                    dialog.dismiss();
 
                 }
             });
@@ -202,11 +204,13 @@ public class ReserveActivity extends AppCompatActivity {
             no.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    exit.dismiss();
+                    dialog.dismiss();
                 }
             });
         }
     }
+
+
 
     void numberPickerTextColor(NumberPicker $v, int $c) {
         for (int i = 0, j = $v.getChildCount(); i < j; i++) {

@@ -48,7 +48,7 @@
         android:layout_height="0dp"
         android:weightSum="3"
         android:orientation="horizontal"
-        android:layout_weight="0.5">
+        android:layout_weight="1">
         <TextView
             android:textColor="@color/text"
             android:textSize="15dp"
@@ -80,7 +80,7 @@
         android:id="@+id/list_item"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="7.5" />
+        android:layout_weight="7" />
 
     <Button
         android:id="@+id/button"

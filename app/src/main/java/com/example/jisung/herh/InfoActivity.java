@@ -69,7 +69,6 @@ public class InfoActivity extends AppCompatActivity implements OnMapReadyCallbac
             int Rid = getResources().getIdentifier("item"+i,"id",this.getPackageName());
             item[i]=(TextView)findViewById(Rid);
         }
-        item[0].setText("dlrj");
         store_name = (TextView) findViewById(R.id.title);
         tel = (TextView) findViewById(R.id.tel);
         max_number = (TextView) findViewById(R.id.maxNum);
@@ -86,7 +85,6 @@ public class InfoActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     void scriptSet(String str){
-        Log.d("test11",str);
         String data[];
         data = str.split("/");
         for(int i=0;i<=19;i++){
@@ -94,8 +92,6 @@ public class InfoActivity extends AppCompatActivity implements OnMapReadyCallbac
             Log.d("test11",data[i]);
             item[i].setText(data[i]);
         }
-        Log.d("test11","+"+data[19]);
-//        item[19].setText("qweeqwe");
     }
 
     @Override
@@ -198,7 +194,6 @@ public class InfoActivity extends AppCompatActivity implements OnMapReadyCallbac
         Intent intent = new Intent(InfoActivity.this, User_ResActivity.class);
         intent.putExtra("store", store);
         intent.putExtra("id", user_id);
-        Log.d("test11", "idchecl" + user_id);
         startActivity(intent);
     }
 }

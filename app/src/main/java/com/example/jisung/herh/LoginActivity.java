@@ -23,6 +23,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -121,6 +124,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         hostScreen = (LinearLayout) findViewById(R.id.screen_host);
         code.setText(tmp.getString("code", ""));
         codeS = code.getText().toString();
+
     }
 
     private void signIn() {
@@ -143,12 +147,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void handleSignInResult(GoogleSignInResult result) {
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
+
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
             Log.d("test11", acct.getEmail());
             Toast.makeText(this, "로그인 되었습니다.", Toast.LENGTH_SHORT).show();
+
             id = acct.getEmail();
+
             intent = new Intent(this, MainActivity.class);
             intent.putExtra("id", id);
             startActivity(intent);
