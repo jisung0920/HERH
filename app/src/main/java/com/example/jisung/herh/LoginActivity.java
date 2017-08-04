@@ -105,7 +105,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }//화면 변경
         else if (v.getId() == R.id.login) {
             codeS = code.getText().toString();
+            id = codeS;
             gethostData("http://jisung0920.cafe24.com/hers_host_info.php");
+            tokenRegit("http://jisung0920.cafe24.com/hers_push_resigster.php");
 
         }
 
@@ -124,6 +126,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         hostScreen = (LinearLayout) findViewById(R.id.screen_host);
         code.setText(tmp.getString("code", ""));
         codeS = code.getText().toString();
+        token = FirebaseInstanceId.getInstance().getToken();
 
     }
 
@@ -155,7 +158,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Toast.makeText(this, "로그인 되었습니다.", Toast.LENGTH_SHORT).show();
 
             id = acct.getEmail();
-            token = FirebaseInstanceId.getInstance().getToken();
             tokenRegit("http://jisung0920.cafe24.com/hers_push_resigster.php");
             Log.d("test11", id + "/" + token);
             intent = new Intent(this, MainActivity.class);
