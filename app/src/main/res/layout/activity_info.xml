@@ -14,20 +14,30 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
+        <Button
+            android:onClick="onClick"
+            android:id="@+id/callbutton"
+            android:gravity="center"
+            android:background="@mipmap/ic_launcher"
+            android:layout_gravity="right"
+            android:layout_width="60dp"
+            android:layout_height="match_parent" />
         <TextView
-            android:textColor="@color/textW"
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/loginBtnOn"
             android:gravity="center"
             android:text="가게명"
-            android:id="@+id/title"
+            android:textColor="@color/textW"
             android:textSize="24sp" />
+
         <ImageView
             android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:src="@drawable/hers_main_logo_2"/>
+            android:src="@drawable/hers_main_logo_2" />
     </FrameLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -38,165 +48,307 @@
         <GridLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="5"
-            android:rowCount="3"
             android:layout_gravity="center"
+            android:layout_weight="5"
             android:columnCount="2"
-            android:paddingTop="10dp"
             android:paddingLeft="5dp"
-            >
+            android:paddingTop="10dp"
+            android:rowCount="3">
+
             <TextView
+                android:text="전화번호 : "
                 android:textColor="@color/text"
-                android:textSize="20dp"
-                android:text="전화번호 : "/>
+                android:textSize="20dp" />
+
             <TextView
                 android:id="@+id/tel"
+                android:text="00000000"
                 android:textColor="@color/text"
-                android:textSize="20dp"
-                android:text="00000000"/>
+                android:textSize="20dp" />
+
             <TextView
 
+                android:text="영업시간 : "
                 android:textColor="@color/text"
-                android:textSize="20dp"
-                android:text="영업시간 : "/>
+                android:textSize="20dp" />
+
             <TextView
-                android:textColor="@color/text"
-                android:textSize="20dp"
                 android:id="@+id/openTime"
                 android:text="0000-0000"
-                />
-            <TextView
                 android:textColor="@color/text"
-                android:textSize="20dp"
-                android:text="수용인원 : "/>
+                android:textSize="20dp" />
+
             <TextView
+                android:text="수용인원 : "
                 android:textColor="@color/text"
-                android:textSize="20dp"
+                android:textSize="20dp" />
+
+            <TextView
                 android:id="@+id/maxNum"
-                android:text="100명"/>
+                android:text="100명"
+                android:textColor="@color/text"
+                android:textSize="20dp" />
         </GridLayout>
 
 
     </LinearLayout>
 
-    <GridLayout
-        android:layout_margin="5dp"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2.8"
-        android:rowCount="5"
-        android:columnCount="4"
         android:background="@drawable/xml_border"
-        android:paddingTop="10dp"
-        android:paddingLeft="25dp"
-        >
-        <TextView
-            android:textColor="@color/text"
-            android:textSize="20dp"
-            android:text="test"
-            android:id="@+id/S_item1"/>
-        <TextView
-            android:textColor="@color/text"
-            android:textSize="20dp"
-            android:text="test"
-            android:id="@+id/S_item1_p"/>
-        <TextView
-            android:textColor="@color/text"
-            android:textSize="20dp"
-            android:text="test"
-            android:id="@+id/A_item1"/>
-        <TextView
-            android:textColor="@color/text"
-            android:textSize="20dp"
-            android:text="test"
-            android:id="@+id/A_item1_p"/>
-        <TextView
-            android:textColor="@color/text"
-            android:textSize="20dp"
-            android:text="test"
-            android:id="@+id/S_item2"/>
-        <TextView
-            android:textColor="@color/text"
-            android:textSize="20dp"
-            android:text="test"
-            android:id="@+id/S_item2_p"/>
-        <TextView
-            android:textColor="@color/text"
-            android:textSize="20dp"
-            android:text="test"
-            android:id="@+id/A_item2"/>
-        <TextView
-            android:textColor="@color/text"
-            android:textSize="20dp"
-            android:text="test"
-            android:id="@+id/A_item2_p"/>
-        <TextView
-            android:textColor="@color/text"
-            android:textSize="20dp"
-            android:text="test"
-            android:id="@+id/S_item3"/>
-        <TextView
-            android:textColor="@color/text"
-            android:textSize="20dp"
-            android:text="test"
-            android:id="@+id/S_item3_p"/>
-        <TextView
-            android:textColor="@color/text"
-            android:textSize="20dp"
-            android:text="test"
-            android:id="@+id/A_item3"/>
-        <TextView
-            android:textColor="@color/text"
-            android:textSize="20dp"
-            android:text="test"
-            android:id="@+id/A_item3_p"/>
-        <TextView
-            android:textColor="@color/text"
-            android:textSize="20dp"
-            android:text="test"
-            android:id="@+id/S_item4"/>
-        <TextView
-            android:textColor="@color/text"
-            android:textSize="20dp"
-            android:text="test"
-            android:id="@+id/S_item4_p"/>
-        <TextView
-            android:textColor="@color/text"
-            android:textSize="20dp"
-            android:text="test"
-            android:id="@+id/A_item4"/>
-        <TextView
-            android:textColor="@color/text"
-            android:textSize="20dp"
-            android:text="test"
-            android:id="@+id/A_item4_p"/>
-        <TextView
-            android:textColor="@color/text"
-            android:textSize="20dp"
-            android:text="test"
-            android:id="@+id/S_item5"/>
-        <TextView
-            android:textColor="@color/text"
-            android:textSize="20dp"
-            android:text="test"
-            android:id="@+id/S_item5_p"/>
-        <TextView
-            android:textColor="@color/text"
-            android:textSize="20dp"
-            android:text="test"
-            android:id="@+id/A_item5"/>
-        <TextView
-            android:textColor="@color/text"
-            android:textSize="20dp"
-            android:text="test"
-            android:id="@+id/A_item5_p"/>
-        </GridLayout>
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:weightSum="4">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="0.1"
-    android:background="@color/textW"></LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="5">
+
+            <TextView
+                android:id="@+id/item0"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="test"
+                android:textColor="@color/text"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/item2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="test"
+                android:textColor="@color/text"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/item4"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="test"
+                android:textColor="@color/text"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/item6"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="test"
+                android:textColor="@color/text"
+                android:textSize="15dp" />
+
+
+            <TextView
+                android:id="@+id/item8"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="test"
+                android:textColor="@color/text"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="5">
+
+            <TextView
+                android:id="@+id/item1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="test"
+                android:textColor="@color/text"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/item3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="test"
+                android:textColor="@color/text"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/item5"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="test"
+                android:textColor="@color/text"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/item7"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="test"
+                android:textColor="@color/text"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/item9"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="test"
+                android:textColor="@color/text"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="5">
+
+
+            <TextView
+                android:id="@+id/item10"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="test"
+                android:textColor="@color/text"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/item12"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="test"
+                android:textColor="@color/text"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/item14"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="test"
+                android:textColor="@color/text"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/item16"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="test"
+                android:textColor="@color/text"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/item18"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="test"
+                android:textColor="@color/text"
+                android:textSize="15dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="5">
+
+            <TextView
+                android:id="@+id/item11"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="test"
+                android:textColor="@color/text"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/item13"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="test"
+                android:textColor="@color/text"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/item15"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="test"
+                android:textColor="@color/text"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/item17"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="test"
+                android:textColor="@color/text"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/item19"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="test"
+                android:textColor="@color/text"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:background="@color/textW"></LinearLayout>
 
     <fragment
         android:id="@+id/map"
@@ -204,6 +356,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -39,12 +40,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InfoActivity extends AppCompatActivity implements OnMapReadyCallback {
-    String store, user_id;
+    String store, user_id,tel_num;
     TextView store_name, tel, max_number, open_Time;
+    TextView item[];
     MapFragment mapFragment;
     Double Lat = 0.0;
     Double Lon = 0.0;
     Geocoder mCoder;
+    String add;
     FragmentManager fragmentManager;
 
 
@@ -54,24 +57,46 @@ public class InfoActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
+        init();
+        getDbData("http://jisung0920.cafe24.com/hers_s_info.php");
+
+
+    }
+
+    void init() {
+        item = new TextView[20];
+        for(int i=0;i<20;i++){
+            int Rid = getResources().getIdentifier("item"+i,"id",this.getPackageName());
+            item[i]=(TextView)findViewById(Rid);
+        }
+        item[0].setText("dlrj");
         store_name = (TextView) findViewById(R.id.title);
         tel = (TextView) findViewById(R.id.tel);
         max_number = (TextView) findViewById(R.id.maxNum);
         open_Time = (TextView) findViewById(R.id.openTime);
 
+        add="";
         Intent getintent = getIntent();
         store = getintent.getStringExtra("store");
         user_id = getintent.getStringExtra("id");
         img = getintent.getIntExtra("image", R.drawable.sample1);
         store_name.setText(store);
         mCoder = new Geocoder(this);
-        getDbData("http://jisung0920.cafe24.com/hers_s_info.php");
-
-
-
 
     }
 
+    void scriptSet(String str){
+        Log.d("test11",str);
+        String data[];
+        data = str.split("/");
+        for(int i=0;i<=19;i++){
+
+            Log.d("test11",data[i]);
+            item[i].setText(data[i]);
+        }
+        Log.d("test11","+"+data[19]);
+//        item[19].setText("qweeqwe");
+    }
 
     @Override
     public void onMapReady(final GoogleMap map) {
@@ -130,18 +155,20 @@ public class InfoActivity extends AppCompatActivity implements OnMapReadyCallbac
                 try {
                     JSONObject jsonObject = new JSONObject(result);//jsonObject 형태로 위에서 데이터들을 포멧한다.
                     JSONArray reserveData = jsonObject.getJSONArray("response"); //json형태에서 response라는 키를 갖는 배열을 가져온다.
-                    String str = "";
+
                     for (int i = 0; i < reserveData.length(); i++) { //배열의 길이만큼 반복해서 더한다.
                         JSONObject object = reserveData.getJSONObject(i);
-                        tel.setText(object.getString("store_tel"));
+                        tel_num = object.getString("store_tel");
+                        tel.setText(tel_num);
                         max_number.setText(object.getString("max_number"));
-                        str = object.getString("store_address");
+                        add = object.getString("store_address");
                         open_Time.setText(object.getString("open_Time"));
+                        scriptSet(object.getString("script"));
                     }
 
                     //주소값을 통하여 로케일을 받아온다
 
-                    List<Address> addr = mCoder.getFromLocationName(str, 1);
+                    List<Address> addr = mCoder.getFromLocationName(add, 1);
                     Lat = addr.get(0).getLatitude();
                     Lon = addr.get(0).getLongitude();
                     fragmentManager = getFragmentManager();
@@ -160,6 +187,10 @@ public class InfoActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
         GetDataJSON g = new GetDataJSON();
         g.execute(string); //doinBackground 메소드를 실행시킨다.
+    }
+    void onClick(View v){
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:/" +tel_num));
+        startActivity(intent);
     }
 
 
