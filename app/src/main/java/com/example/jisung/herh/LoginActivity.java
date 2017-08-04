@@ -26,6 +26,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -48,7 +49,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     LinearLayout userScreen; // 사용자 화면
     LinearLayout hostScreen; // 사업자 화면
     Intent intent;
-    String id;
+    String id, token;
     SharedPreferences tmp;
     SharedPreferences.Editor editor;
     SignInButton signInButton;
@@ -78,7 +79,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         signInButton.setScopes(gso.getScopeArray());
 
 
-
         findViewById(R.id.sign_in_button).setOnClickListener(this);
 
 
@@ -98,7 +98,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             userBtn.setBackgroundResource(R.color.loginButton);
             userScreen.setVisibility(View.INVISIBLE);
             hostScreen.setVisibility(View.VISIBLE);
-            if(!codeS.equals("")){
+            if (!codeS.equals("")) {
 //                gethostData("http://jisung0920.cafe24.com/hers_host_info.php");
             }
 
@@ -155,9 +155,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Toast.makeText(this, "로그인 되었습니다.", Toast.LENGTH_SHORT).show();
 
             id = acct.getEmail();
-
+            token = FirebaseInstanceId.getInstance().getToken();
+            tokenRegit("http://jisung0920.cafe24.com/hers_push_resigster.php");
+            Log.d("test11", id + "/" + token);
             intent = new Intent(this, MainActivity.class);
             intent.putExtra("id", id);
+
             startActivity(intent);
             finish();
 
@@ -172,6 +175,50 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Toast.makeText(getApplicationContext(), "" + connectionResult, Toast.LENGTH_SHORT).show();
     }
 
+    private void tokenRegit(String string) { // 서버의 DB에서 data 가져오는 메소드
+        class pushData extends AsyncTask<String, Void, String> { // 서버 관련이라 멀티 thread를 사용하기 위해
+            // AsyncTask를 사용한다.
+            @Override
+            protected String doInBackground(String... params) {// AsyncTask의 overide 메소드
+
+                String uri = params[0]; //params에 php 주소가 있으므로 uri에 주소가 들어간다.
+                try {
+                    URL url = new URL(uri);//url 객체가 생성된다.
+                    HttpURLConnection con = (HttpURLConnection) url.openConnection(); //url을 연결하기 위한 객체 con을 생성
+                    con.setRequestMethod("POST");
+                    con.setDoOutput(true);
+                    Log.d("test11", "2" + id + "/" + token);
+                    String postData = "user_id=" + URLEncoder.encode(id) + "&Token=" + URLEncoder.encode(token);
+                    OutputStream outputStream = con.getOutputStream();
+                    outputStream.write(postData.getBytes("UTF-8"));
+                    outputStream.flush();
+                    outputStream.close();
+
+                    InputStream inputStream = con.getInputStream();
+                    String result = loginResult(inputStream);
+                    Log.d("test11", result);
+
+                    inputStream.close();
+                    con.disconnect();
+                    return result;//onPostExecute실행
+                    //받아온 데이터를 StringBuilder 의 형태로 만든다.
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+
+                }
+                return null;
+            }
+
+            protected void onPostExecute(String result) {// AsyncTask의 overide 메소드
+
+                Log.d("test11+", "." + result + ".");
+
+            }
+        }
+        pushData g = new pushData();
+        g.execute(string); //doinBackground 메소드를 실행시킨다.
+    }
 
     private void gethostData(String string) { // 서버의 DB에서 data 가져오는 메소드
         class GetDataJSON extends AsyncTask<String, Void, String> { // 서버 관련이라 멀티 thread를 사용하기 위해
@@ -190,13 +237,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     outputStream.write(postData.getBytes("UTF-8"));
                     outputStream.flush();
                     outputStream.close();
-                    String result ="";
+                    String result = "";
                     InputStream inputStream;
                     if (con.getResponseCode() == HttpURLConnection.HTTP_OK) {
                         inputStream = con.getInputStream();
                         result = loginResult(inputStream);
-                    }
-                    else {
+                    } else {
                         inputStream = con.getErrorStream();
                         cancel(true);
                         Toast.makeText(LoginActivity.this, "코드를 확인해주세요.", Toast.LENGTH_SHORT).show();
