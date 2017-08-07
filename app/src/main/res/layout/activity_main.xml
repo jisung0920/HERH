@@ -13,46 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3">
-        <ViewFlipper
+        <android.support.v4.view.ViewPager
+            android:id="@+id/eventSlide"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:id="@+id/eventSlide">
-            <ImageView
-                android:onClick="onClick"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@drawable/sample1"
-                android:id="@+id/eventView1" />
-            <ImageView
-                android:onClick="onClick"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@drawable/sample1"
-                android:id="@+id/eventView2" />
-            <ImageView
-                android:onClick="onClick"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@drawable/sample1"
-                android:id="@+id/eventView3" />
-            <ImageView
-                android:onClick="onClick"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@drawable/sample1"
-                android:id="@+id/eventView4" />
-            <ImageView
-                android:onClick="onClick"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@drawable/sample1"
-                android:id="@+id/eventView5" />
-        </ViewFlipper>
+            android:layout_height="match_parent"
+            android:layout_weight="3">
+        </android.support.v4.view.ViewPager>
         <ImageView
             android:id="@+id/mymenu"
             android:layout_width="70dp"
@@ -70,14 +36,14 @@
 
         <ImageButton
             android:padding="5dp"
-            android:id="@+id/button4"
+            android:id="@+id/pub"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/beer"
             android:scaleType="fitCenter"
             android:background="@color/loginBtnOn"
-            android:text="술집" />
+            android:text="술집"/>
 
         <ImageButton
             android:background="@color/loginButton"
@@ -86,7 +52,8 @@
             android:src="@drawable/rice"
             android:scaleType="fitCenter"
             android:text="밥집"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:id="@+id/rest"/>
     </LinearLayout>
 
     <GridView
