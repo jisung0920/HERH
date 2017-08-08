@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:weightSum="10"
-    android:background="@color/background"
+    android:background="@color/col1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -19,12 +19,14 @@
             android:onClick="onClick"
             android:id="@+id/resBtn"
             android:layout_weight="1"
+            android:textColor="@color/textW"
             android:background="@color/loginBtnOn"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="예약현황"/>
         <Button
             android:onClick="onClick"
+            android:textColor="@color/textW"
             android:id="@+id/reqBtn"
             android:background="@color/loginButton"
             android:layout_weight="1"

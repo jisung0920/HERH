@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="10"
-    android:background="@color/background"
-    >
+    android:background="@color/col1"
+    android:orientation="vertical"
+    android:weightSum="10">
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -15,81 +15,86 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/loginButton"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="2">
 
             <TextView
+                android:layout_weight="1"
                 android:id="@+id/store"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="예약정보"
-                android:textColor="@color/text"
-                android:textSize="20dp" />
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="예약목록"
+                android:textColor="@color/textW"/>
 
             <TextView
+                android:layout_weight="1"
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:gravity="center"
-                android:textStyle="bold"
-                android:text="TextView"
-                android:textColor="@color/text"
-                />
+
+                android:textColor="@color/textW"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <ImageView
             android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:src="@drawable/hers_main_logo_2"/>
+            android:src="@drawable/hers_main_logo_2" />
     </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:weightSum="3"
+        android:layout_weight="1"
         android:orientation="horizontal"
-        android:layout_weight="1">
+        android:weightSum="3">
+
         <TextView
-            android:textColor="@color/text"
-            android:textSize="15dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="center"
             android:text="시간"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent" />
-        <TextView
             android:textColor="@color/text"
-            android:textSize="15dp"
+            android:textSize="15dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="center"
             android:text="예약자"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent" />
-        <TextView
             android:textColor="@color/text"
-            android:textSize="15dp"
+            android:textSize="15dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="center"
             android:text="인원"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent" />
+            android:textColor="@color/text"
+            android:textSize="15dp" />
     </LinearLayout>
 
     <ListView
-        android:layout_margin="5dp"
         android:id="@+id/list_item"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_margin="5dp"
         android:layout_weight="7" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_margin="5dp"
         android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:background="@color/loginBtnOn"
         android:text="예약하기"
-        android:layout_margin="15dp"
-        android:background="@color/loginBtnOn"/>
+        android:textColor="@color/textW" />
 
 </LinearLayout>

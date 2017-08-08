@@ -3,12 +3,15 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.media.Image;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
@@ -28,14 +31,26 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity{
     private  long lastTimeBackPressed;
     ArrayList<Store> stores = new ArrayList<>();
-    ArrayList<Rest> rests = new ArrayList<>();
+    ArrayList<Store> rests = new ArrayList<>();
     storeAdapter adapter;
-    restAdapter resadapter;
+    storeAdapter resadapter;
     GridView list;
     private String user_id;
     ImageButton pub;
     ImageButton rest;
     ViewPager eventSlide;
+    int slidNum=0;
+    Fragment cur_fragment=new Fragment();
+
+    Handler mHandler=new Handler(){
+        public void handleMessage(Message msg){
+            if(slidNum==5)
+                slidNum=0;
+            eventSlide.setCurrentItem(slidNum++);
+            mHandler.sendEmptyMessageDelayed(0,3000);
+        }
+    };
+
 
     protected void init(){
         Intent intent = getIntent();
@@ -43,9 +58,16 @@ public class MainActivity extends AppCompatActivity{
         pub = (ImageButton) findViewById(R.id.pub);
         rest = (ImageButton) findViewById(R.id.rest);
         eventSlide = (ViewPager) findViewById(R.id.eventSlide);
+        Log.d("test11","-1");
+
         eventSlide.setAdapter(new pagerAdapter(getSupportFragmentManager()));
+        Log.d("test11","0");
+
         eventSlide.setCurrentItem(0);
+        Log.d("test11","5");
+
     }
+
 
     protected void storeGridSet() {
         list = (GridView) findViewById(R.id.stores);
@@ -63,21 +85,6 @@ public class MainActivity extends AppCompatActivity{
         });
     }
 
-    protected void restGridSet() {
-        list = (GridView) findViewById(R.id.stores);
-        resadapter = new restAdapter(this, rests);
-        list.setAdapter(resadapter);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MainActivity.this, InfoActivity.class);
-                intent.putExtra("store", rests.get(position).getRest_name());
-                intent.putExtra("image", rests.get(position).getImg());
-                intent.putExtra("id", user_id);
-                startActivity(intent);
-            }
-        });
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,13 +100,12 @@ public class MainActivity extends AppCompatActivity{
         stores.add(new Store(R.drawable.sample5,"봉구비어"));
         stores.add(new Store(R.drawable.sample1,"칠성포차"));
 
-        rests.add(new Rest(R.drawable.sample2, "Bistro Tabom"));
-        rests.add(new Rest(R.drawable.sample3, "취해"));
-        rests.add(new Rest(R.drawable.sample4, "덴뿌라"));
-        rests.add(new Rest(R.drawable.sample5, "난집에 돈까스"));
-        rests.add(new Rest(R.drawable.sample1, "키친 모리아"));
+
+        rests.add(new Store(R.drawable.sample4, "덴뿌라"));
+        rests.add(new Store(R.drawable.sample5, "난집에 돈까스"));
 
         storeGridSet();
+        mHandler.sendEmptyMessage(0);
     }
 
     View.OnClickListener colorChanger = new View.OnClickListener(){
@@ -108,13 +114,16 @@ public class MainActivity extends AppCompatActivity{
             if(v.getId() == R.id.pub){
                 pub.setBackgroundResource(R.color.loginBtnOn);
                 rest.setBackgroundResource(R.color.loginButton);
-                storeGridSet();
+                adapter = new storeAdapter(MainActivity.this, stores);
+
             }
             else if(v.getId() == R.id.rest){
                 pub.setBackgroundResource(R.color.loginButton);
                 rest.setBackgroundResource(R.color.loginBtnOn);
-                restGridSet();
+                adapter = new storeAdapter(MainActivity.this, rests);
+
             }
+            list.setAdapter(adapter);
         }
     };
 
@@ -137,23 +146,35 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private class pagerAdapter extends FragmentStatePagerAdapter {
+
+
         public pagerAdapter(android.support.v4.app.FragmentManager fm){
             super(fm);
+            Log.d("test11","1");
+
         }
 
         @Override
         public android.support.v4.app.Fragment getItem(int position){
+            Log.d("test11","2");
+
             switch (position){
                 case 0:
-                    return new Event1();
+                    Log.d("test11","3");
+                    cur_fragment=new page1(R.drawable.sample1);
+                    return cur_fragment;
                 case 1:
-                    return new Event2();
+                    cur_fragment=new page1(R.drawable.sample2);
+                    return cur_fragment;
                 case 2:
-                    return new Event3();
+                    cur_fragment=new page1(R.drawable.sample3);
+                    return cur_fragment;
                 case 3:
-                    return new Event4();
+                    cur_fragment=new page1(R.drawable.sample4);
+                    return cur_fragment;
                 case 4:
-                    return new Event5();
+                    cur_fragment=new page1(R.drawable.sample5);
+                    return cur_fragment;
                 default:
                     return null;
             }

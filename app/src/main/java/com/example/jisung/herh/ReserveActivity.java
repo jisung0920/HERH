@@ -139,8 +139,8 @@ public class ReserveActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reserve);
-        numberPickerTextColor((NumberPicker) findViewById(R.id.error), Color.BLACK);
-        dateTimePickerTextColour((TimePicker) findViewById(R.id.time), Color.BLACK);
+//        numberPickerTextColor((NumberPicker) findViewById(R.id.error), Color.BLACK);
+//        dateTimePickerTextColour((TimePicker) findViewById(R.id.time), Color.BLACK);
         init();
     }
 
@@ -156,7 +156,7 @@ public class ReserveActivity extends AppCompatActivity {
 
         // 입력이 다 이뤄지지 않을 경우
         if (people_Num.equals("") || user.equals("") || phone_Num.equals("")) {
-            Toast.makeText(this, "모든 정보를 입력하세요.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "모든 정보를 입력해주세요.", Toast.LENGTH_SHORT).show();
         }
         // 입력이 다 이뤄진 경우
         else {
@@ -212,34 +212,34 @@ public class ReserveActivity extends AppCompatActivity {
 
 
 
-    void numberPickerTextColor(NumberPicker $v, int $c) {
-        for (int i = 0, j = $v.getChildCount(); i < j; i++) {
-            View t0 = $v.getChildAt(i);
-            if (t0 instanceof EditText) {
-                try {
-                    Field t1 = $v.getClass().getDeclaredField("mSelectorWheelPaint");
-                    t1.setAccessible(true);
-                    ((Paint) t1.get($v)).setColor($c);
-                    ((EditText) t0).setTextColor($c);
-                    $v.invalidate();
-                } catch (Exception e) {
-                }
-            }
-        }
-    }
-
-    void dateTimePickerTextColour(ViewGroup $picker, int $c) {
-
-        for (int i = 0, j = $picker.getChildCount(); i < j; i++) {
-            View t0 = (View) $picker.getChildAt(i);
-
-            //NumberPicker는 아까만든 함수로 발라내고
-            if (t0 instanceof NumberPicker) numberPickerTextColor((NumberPicker) t0, $c);
-
-                //아니면 계속 돌아봐
-            else if (t0 instanceof ViewGroup) dateTimePickerTextColour((ViewGroup) t0, $c);
-        }
-    }
+//    void numberPickerTextColor(NumberPicker $v, int $c) {
+//        for (int i = 0, j = $v.getChildCount(); i < j; i++) {
+//            View t0 = $v.getChildAt(i);
+//            if (t0 instanceof EditText) {
+//                try {
+//                    Field t1 = $v.getClass().getDeclaredField("mSelectorWheelPaint");
+//                    t1.setAccessible(true);
+//                    ((Paint) t1.get($v)).setColor($c);
+//                    ((EditText) t0).setTextColor($c);
+//                    $v.invalidate();
+//                } catch (Exception e) {
+//                }
+//            }
+//        }
+//    }
+//
+//    void dateTimePickerTextColour(ViewGroup $picker, int $c) {
+//
+//        for (int i = 0, j = $picker.getChildCount(); i < j; i++) {
+//            View t0 = (View) $picker.getChildAt(i);
+//
+//            //NumberPicker는 아까만든 함수로 발라내고
+//            if (t0 instanceof NumberPicker) numberPickerTextColor((NumberPicker) t0, $c);
+//
+//                //아니면 계속 돌아봐
+//            else if (t0 instanceof ViewGroup) dateTimePickerTextColour((ViewGroup) t0, $c);
+//        }
+//    }
 }
 
 

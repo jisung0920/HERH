@@ -33,7 +33,7 @@
         android:label="HERS"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -81,12 +81,8 @@
             android:value="AIzaSyBhCmTNtQ2SKJULB8s6KCWldHA_V0yaa5g" />
 
         <activity android:name=".InfoActivity" />
-        <activity android:name=".MymenuActivity" />
-        <activity android:name=".Event1" />
-        <activity android:name=".Event2" />
-        <activity android:name=".Event3" />
-        <activity android:name=".Event4" />
-        <activity android:name=".Event5"></activity>
+        <activity android:name=".MymenuActivity" >
+ </activity>
     </application>
 
 </manifest>

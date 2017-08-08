@@ -10,6 +10,7 @@
     <color name="text">#333333</color>
     <color name="colW">#fff</color>
     <color name="col1">#c0fae9e3</color>
+    <color name="col2">#70fae9e3</color>
     <color name="wait">#C0FFF53B</color>
     <color name="refuse">#e75353</color>
     <color name="accept">#7af47c</color>

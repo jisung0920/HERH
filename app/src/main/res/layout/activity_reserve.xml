@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="한신포차"
-                android:textColor="@color/text"
+                android:textColor="@color/textW"
                 android:textSize="20dp" />
 
             <TextView
@@ -35,7 +35,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="2017년 6월 20일"
-                android:textColor="@color/text" />
+                android:textColor="@color/textW" />
         </LinearLayout>
         <ImageView
             android:layout_width="60dp"
@@ -175,6 +175,7 @@
         android:layout_weight="8"
         android:background="@color/loginBtnOn"
         android:onClick="onClick"
+        android:textColor="@color/textW"
         android:text="예약" />
 
 </LinearLayout>

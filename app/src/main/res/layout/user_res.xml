@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/col1"
     android:orientation="vertical"
     android:weightSum="10">
 
@@ -32,10 +32,11 @@
         android:layout_weight="7" />
 
     <TextView
+        android:textSize="20dp"
+        android:gravity="center"
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="TextView" />
+        android:layout_weight="1" />
 
 </LinearLayout>
