@@ -102,7 +102,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:text="수락"
-            android:background="@color/loginButton"/>
+            android:background="@drawable/btn_type2"/>
 
         <Button
             android:layout_margin="5dp"
@@ -112,7 +112,7 @@
             android:layout_weight="5"
             android:text="거절"
             android:textColor="@color/textW"
-            android:background="@color/loginButton"/>
+            android:background="@drawable/btn_type2"/>
     </LinearLayout>
 
 

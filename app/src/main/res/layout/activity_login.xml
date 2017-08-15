@@ -118,7 +118,7 @@
                 android:layout_marginBottom="15dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:background="@color/loginBtnOn"
+                android:background="@drawable/btn_type1"
                 android:gravity="center"
                 android:onClick="onClick"
                 android:textColor="@color/textW"

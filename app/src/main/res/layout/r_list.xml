@@ -84,7 +84,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="5dp"
-        android:layout_weight="7" />
+        android:layout_weight="6.5" />
 
     <Button
         android:id="@+id/button"
@@ -92,8 +92,8 @@
         android:layout_height="0dp"
         android:layout_margin="5dp"
         android:layout_marginTop="10dp"
-        android:layout_weight="1"
-        android:background="@color/loginBtnOn"
+        android:layout_weight="1.5"
+        android:background="@drawable/btn_type1"
         android:text="예약하기"
         android:textColor="@color/textW" />
 

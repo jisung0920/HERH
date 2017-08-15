@@ -174,7 +174,7 @@
         <Button
             android:textColor="@color/textW"
             android:layout_margin="3dp"
-            android:background="@color/loginBtnOn"
+            android:background="@drawable/btn_type1"
             android:id="@+id/yes"
             android:layout_weight="1"
             android:layout_width="0dp"
@@ -183,7 +183,7 @@
         <Button
             android:textColor="@color/textW"
             android:layout_margin="3dp"
-            android:background="@color/loginBtnOn"
+            android:background="@drawable/btn_type1"
             android:id="@+id/no"
             android:layout_weight="1"
             android:layout_width="0dp"

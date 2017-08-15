@@ -61,7 +61,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         init();
 
-
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -85,6 +84,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void onClick(View v) {
+        if (!NetworkCheck.connect(this)) {
+            Toast.makeText(this, "인터넷 연결 상태를 확인해 주세요", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            return ;
+        }
         if (v.getId() == R.id.sign_in_button)
             signIn();
         else if (v.getId() == R.id.chose_user) {
@@ -133,6 +138,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
+
     }
 
     @Override
@@ -271,15 +277,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 //doinbackgroud 의 return인 sb.toString().trim()이 result로 온다.
 
                 try {
-                    editor.putString("code", code.getText().toString());
-                    editor.commit();
-                    intent = new Intent(LoginActivity.this, ResCheckActivity.class);
-                    intent.putExtra("store", result);//tmp
-                    startActivity(intent);
+                    if(result.equals("FAL"))
+                        Toast.makeText(LoginActivity.this, "코드를 확인해주세요.", Toast.LENGTH_SHORT).show();
+                    else {
+                        editor.putString("code", code.getText().toString());
+                        editor.commit();
+                        intent = new Intent(LoginActivity.this, ResCheckActivity.class);
+                        intent.putExtra("store", result);//tmp
+                        startActivity(intent);
 //                    finish();
-
+                    }
                 } catch (Exception e) {
-                    Toast.makeText(LoginActivity.this, "코드를 확인해주세요.", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
 
                 }

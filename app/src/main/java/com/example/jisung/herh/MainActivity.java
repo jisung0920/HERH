@@ -90,6 +90,12 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if(!NetworkCheck.connect(this)) {
+            Toast.makeText(this, "인터넷 연결 상태를 확인해 주세요", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
         init();
         pub.setOnClickListener(colorChanger);
         rest.setOnClickListener(colorChanger);
@@ -132,6 +138,12 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void menuClick(View v){
+        if(!NetworkCheck.connect(this)) {
+            Toast.makeText(this, "인터넷 연결 상태를 확인해 주세요", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
         Intent intent = new Intent(MainActivity.this, MymenuActivity.class);
         intent.putExtra("id", user_id);
         startActivity(intent);

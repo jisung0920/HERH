@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -57,9 +58,14 @@ public class InfoActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
+        if(!NetworkCheck.connect(this)) {
+            Toast.makeText(this, "인터넷 연결 상태를 확인해 주세요", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
         init();
         getDbData("http://jisung0920.cafe24.com/hers_s_info.php");
-
 
     }
 
@@ -115,6 +121,9 @@ public class InfoActivity extends AppCompatActivity implements OnMapReadyCallbac
                 try {
                     URL url = new URL(uri);//url 객체가 생성된다.
                     HttpURLConnection con = (HttpURLConnection) url.openConnection(); //url을 연결하기 위한 객체 con을 생성
+                    con.setConnectTimeout(3000);
+                    con.setReadTimeout(3000);
+//                    Log.d("netcheck",con.co+"");
                     con.setRequestMethod("POST");
                     con.setDoOutput(true);
                     String postData = "store=" + URLEncoder.encode(store);
@@ -185,12 +194,25 @@ public class InfoActivity extends AppCompatActivity implements OnMapReadyCallbac
         g.execute(string); //doinBackground 메소드를 실행시킨다.
     }
     void onClick(View v){
+        if(!NetworkCheck.connect(this)) {
+            Toast.makeText(this, "인터넷 연결 상태를 확인해 주세요", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
         Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:/" +tel_num));
         startActivity(intent);
     }
 
 
     public void resClick(View v) {
+        if(!NetworkCheck.connect(this)) {
+            Toast.makeText(this, "인터넷 연결 상태를 확인해 주세요", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
         Intent intent = new Intent(InfoActivity.this, User_ResActivity.class);
         intent.putExtra("store", store);
         intent.putExtra("id", user_id);

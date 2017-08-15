@@ -54,12 +54,19 @@ public class ResCheckActivity extends AppCompatActivity {
     Button resBtn, reqBtn;
     ListView listView, r_listView;
     Display display;
+   Button refBtn;
     int posit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_res_check);
+        if(!NetworkCheck.connect(this)) {
+            Toast.makeText(this, "인터넷 연결 상태를 확인해 주세요", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
         init();
         Intent getintent = getIntent();
         store = getintent.getStringExtra("store");
@@ -158,16 +165,22 @@ public class ResCheckActivity extends AppCompatActivity {
                         posit = position;
                         allow = 2;
                         getDbaccData("http://jisung0920.cafe24.com/hers_allow_change.php");
-                        if (flag == 1) {
-                            r_list.get(position).setAllow(2);
-                            Log.d("test11", "flag Set");
-                        }
                         r_adapter.notifyDataSetChanged();
                         Log.d("test11", "flag chang");
                         dialog.dismiss();
                     }
                 });
 
+            }
+        });
+        refBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                r_list = new ArrayList<reserver_al>();
+                r_adapter = new reserver_alAdapter(ResCheckActivity.this, r_list);
+                r_listView.setAdapter(r_adapter);
+                getDbResData("http://jisung0920.cafe24.com/hers_Res_C.php");
+                Toast.makeText(ResCheckActivity.this, "새로고침 되었습니다.", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -183,10 +196,16 @@ public class ResCheckActivity extends AppCompatActivity {
         r_list = new ArrayList<reserver_al>();
         r_adapter = new reserver_alAdapter(this, r_list);
         r_listView.setAdapter(r_adapter);
-
+        refBtn = (Button)findViewById(R.id.ref_btn);
     }
 
     public void onClick(View v) {
+        if(!NetworkCheck.connect(this)) {
+            Toast.makeText(this, "인터넷 연결 상태를 확인해 주세요", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
         if (v.getId() == R.id.resBtn) {
             resBtn.setBackgroundResource(R.color.loginBtnOn);
             reqBtn.setBackgroundResource(R.color.loginButton);
@@ -370,6 +389,7 @@ public class ResCheckActivity extends AppCompatActivity {
                 try {
                     JSONObject jsonObject = new JSONObject(result);//jsonObject 형태로 위에서 데이터들을 포멧한다.
                     JSONArray reserveData = jsonObject.getJSONArray("response"); //json형태에서 response라는 키를 갖는 배열을 가져온다.
+
                     for (int i = 0; i < reserveData.length(); i++) { //배열의 길이만큼 반복해서 더한다.
                         JSONObject object = reserveData.getJSONObject(i);
                         String name = object.getString("user_name");

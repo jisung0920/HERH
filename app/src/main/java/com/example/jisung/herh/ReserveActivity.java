@@ -139,13 +139,24 @@ public class ReserveActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reserve);
+        if(!NetworkCheck.connect(this)) {
+            Toast.makeText(this, "인터넷 연결 상태를 확인해 주세요", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
 //        numberPickerTextColor((NumberPicker) findViewById(R.id.error), Color.BLACK);
 //        dateTimePickerTextColour((TimePicker) findViewById(R.id.time), Color.BLACK);
         init();
     }
 
     public void onClick(View v) {
-
+        if(!NetworkCheck.connect(this)) {
+            Toast.makeText(this, "인터넷 연결 상태를 확인해 주세요", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
         user = name.getText().toString();
         phone_Num = phoneNum.getText().toString();
         people_Num = peopleNum.getText().toString();
@@ -158,6 +169,11 @@ public class ReserveActivity extends AppCompatActivity {
         if (people_Num.equals("") || user.equals("") || phone_Num.equals("")) {
             Toast.makeText(this, "모든 정보를 입력해주세요.", Toast.LENGTH_SHORT).show();
         }
+        else if(Integer.parseInt(people_Num)<5){
+            Toast.makeText(this, "예약인원을 확인해 주세요.(5명 이상)", Toast.LENGTH_SHORT).show();
+        }
+        else if(phone_Num.length()<10)
+            Toast.makeText(this, "연락처를 확인해 주세요.", Toast.LENGTH_SHORT).show();
         // 입력이 다 이뤄진 경우
         else {
             View dlgview = View.inflate(this, R.layout.pop_up, null);
