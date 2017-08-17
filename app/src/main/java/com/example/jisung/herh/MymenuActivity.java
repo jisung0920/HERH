@@ -1,5 +1,7 @@
 package com.example.jisung.herh;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -8,7 +10,10 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -41,7 +46,7 @@ public class MymenuActivity extends AppCompatActivity {
     int flag=0;
     String dateText;
     int posit;
-
+    Display display;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +57,8 @@ public class MymenuActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+        display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+
         userInfo = (TextView)findViewById(R.id.userInfo);
         r_list = new ArrayList<reserver_al>();
         r_adapter = new reserver_user_Adapter(this,r_list);
@@ -63,61 +70,51 @@ public class MymenuActivity extends AppCompatActivity {
 
         userInfo.setText(userId);
 
-//        r_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-//                posit = position;
-//                final View re_view = View.inflate(view.getContext(), R.layout.r_list_item2,null);
-//                AlertDialog.Builder dialog = new AlertDialog.Builder(view.getContext());
-//                dialog.setView(re_view);
-//                TextView resName = (TextView) re_view.findViewById(R.id.res_name);
-//                TextView resTel = (TextView) re_view.findViewById(R.id.res_tel);
-//                TextView resTime = (TextView) re_view.findViewById(R.id.res_time);
-//                TextView resNum = (TextView) re_view.findViewById(R.id.res_num);
-//                resName.setText("Name : " + r_list.get(position).getName());
-//                resTel.setText("Phone : " + r_list.get(position).getTel());
-//                resTime.setText("Time : " + r_list.get(position).getTime());
-//                resNum.setText("People : " + r_list.get(position).getNum());
-//                Button accept = (Button) re_view.findViewById(R.id.res_acc);
-//                ImageButton call = (ImageButton) re_view.findViewById(R.id.callbutton);
-//                call.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:/" + r_list.get(position).getTel()));
-//                        startActivity(intent);
-//                    }
-//                });
-//                final DialogInterface exit = dialog.setView(re_view).show();
-//                accept.setOnClickListener(new View.OnClickListener(){
-//                    @Override
-//                    public void onClick(View v) {
-//                        time = r_list.get(position).getTime();
-//                        name = r_list.get(position).getName();
-//                        allow = r_list.get(position).getAllow();
-//                        if(flag == 1){
-//                            r_list.get(position).setAllow(1);
-//                        }
-//                        r_adapter.notifyDataSetChanged();
-//                        exit.dismiss();
-//                    }
-//                });
-//                Button refuse = (Button) re_view.findViewById(R.id.res_ref);
-//                refuse.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        time = r_list.get(position).getTime();
-//                        name = r_list.get(position).getName();
-//                        allow = r_list.get(position).getAllow();
-//                        if(flag == 1){
-//                            r_list.get(position).setAllow(2);
-//                        }
-//                        r_adapter.notifyDataSetChanged();
-//                        exit.dismiss();
-//                    }
-//                });
-//
-//            }
-//        });
+
+
+        r_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                posit = position;
+                final View re_view = View.inflate(view.getContext(), R.layout.r_list_item_3,null);
+                final Dialog dialog = new Dialog(view.getContext()); //대화상자 생성
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(re_view);
+
+
+                WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
+
+                params.width = (int) (display.getWidth() * 0.8);
+                params.height = (int) (display.getHeight() * 0.6);
+                dialog.getWindow().setAttributes(params);
+
+
+                TextView resName = (TextView) re_view.findViewById(R.id.res_name);
+                TextView resTel = (TextView) re_view.findViewById(R.id.res_tel);
+                TextView resTime = (TextView) re_view.findViewById(R.id.res_time);
+                TextView resNum = (TextView) re_view.findViewById(R.id.res_num);
+                resName.setText("예약명 : " + r_list.get(position).getName());
+                resTel.setText("전화번호 : " + r_list.get(position).getTel());
+                resTime.setText("시간 : " + r_list.get(position).getTime());
+                resNum.setText("인원 : " + r_list.get(position).getNum());
+
+                Button refuse = (Button) re_view.findViewById(R.id.res_ref);
+                refuse.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        time = r_list.get(position).getTime();
+                        name = r_list.get(position).getName();
+                        allow = r_list.get(position).getAllow();
+                        if(flag == 1){
+                            r_list.get(position).setAllow(2);
+                        }
+                        r_adapter.notifyDataSetChanged();
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+            }
+        });
     }
 
     private void getDbResData(String string) { // 서버의 DB에서 data 가져오는 메소드

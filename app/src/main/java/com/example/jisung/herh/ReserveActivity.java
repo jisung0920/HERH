@@ -47,25 +47,17 @@ public class ReserveActivity extends AppCompatActivity {
     private TextView date, store;
     private String store_name, day_infor, user_id;
 
-
-
     protected void init() {  // 정보 저장
         display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-
         Intent intent = getIntent();
         store_name = intent.getStringExtra("store");
         day_infor = intent.getStringExtra("date");
         user_id = intent.getStringExtra("id");
-
         date = (TextView) findViewById(R.id.date);
         store = (TextView) findViewById(R.id.store);
-
-
         date.setText(day_infor);        // 날짜 변경
         store.setText(store_name);      // 가게명 변경
-
         timer = (TimePicker) findViewById(R.id.time);
-
         peopleNum = (EditText) findViewById(R.id.people_Num);
 
 

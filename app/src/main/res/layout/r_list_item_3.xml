@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/col1"
+
+    android:weightSum="6">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/loginBtnOn"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/store"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="예약정보"
+                android:textColor="@color/textW"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/hers_main_logo_2"/>
+    </FrameLayout>
+    <TextView
+        android:gravity="center_vertical"
+        android:layout_margin="5dp"
+        android:textSize="15dp"
+        android:textColor="@color/text"
+        android:id="@+id/res_name"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+    <LinearLayout
+
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        android:weightSum="10">
+        <TextView
+
+            android:gravity="center_vertical"
+            android:textSize="15dp"
+            android:textColor="@color/text"
+            android:id="@+id/res_tel"
+            android:layout_weight="8"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:gravity="center_vertical"
+        android:layout_margin="5dp"
+        android:textSize="15dp"
+        android:textColor="@color/text"
+        android:id="@+id/res_time"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+    <TextView
+        android:gravity="center_vertical"
+        android:layout_margin="5dp"
+        android:textSize="15dp"
+        android:textColor="@color/text"
+        android:id="@+id/res_num"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:weightSum="10"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+
+        <Button
+            android:layout_margin="5dp"
+            android:id="@+id/res_ref"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:text="예약   취소"
+            android:textColor="@color/textW"
+            android:background="@drawable/btn_type2"/>
+    </LinearLayout>
+
+
+</LinearLayout>

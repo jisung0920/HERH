@@ -121,13 +121,11 @@ public class MainActivity extends AppCompatActivity{
                 pub.setBackgroundResource(R.color.loginBtnOn);
                 rest.setBackgroundResource(R.color.loginButton);
                 adapter = new storeAdapter(MainActivity.this, stores);
-
             }
             else if(v.getId() == R.id.rest){
                 pub.setBackgroundResource(R.color.loginButton);
                 rest.setBackgroundResource(R.color.loginBtnOn);
                 adapter = new storeAdapter(MainActivity.this, rests);
-
             }
             list.setAdapter(adapter);
         }
