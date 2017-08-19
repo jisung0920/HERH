@@ -65,7 +65,7 @@ public class InfoActivity extends AppCompatActivity implements OnMapReadyCallbac
             finish();
         }
         init();
-        getDbData("http://jisung0920.cafe24.com/hers_s_info.php");
+        getDbData("http://alpahers.cafe24.com/hers_s_info.php");
 
     }
 

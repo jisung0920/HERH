@@ -66,7 +66,7 @@ public class MymenuActivity extends AppCompatActivity {
         r_listView.setAdapter(r_adapter);
         Intent getIntent = getIntent();
         userId = getIntent.getStringExtra("id");
-        getDbResData("http://jisung0920.cafe24.com/hers_user_res.php");
+        getDbResData("http://alpahers.cafe24.com/hers_user_res.php");
 
         userInfo.setText(userId);
 

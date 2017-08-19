@@ -63,7 +63,7 @@ public class User_ResActivity extends AppCompatActivity {
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 View r_view = View.inflate(view.getContext(), R.layout.r_list, null);   //뷰 가져오기
                 dateText = dateCovert(year + "-" + (month + 1) + "-" + dayOfMonth);
-                getDbData("http://jisung0920.cafe24.com/hers.php"); //서버에서 데이터 가져오는 함수 호출
+                getDbData("http://alpahers.cafe24.com/hers.php"); //서버에서 데이터 가져오는 함수 호출
                 final Dialog dialog = new Dialog(User_ResActivity.this); //대화상자 생성
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(r_view);

@@ -70,7 +70,7 @@ public class ResCheckActivity extends AppCompatActivity {
         init();
         Intent getintent = getIntent();
         store = getintent.getStringExtra("store");
-        getDbResData("http://jisung0920.cafe24.com/hers_Res_C.php");
+        getDbResData("http://alpahers.cafe24.com/hers_Res_C.php");
         TextView store_name = (TextView) findViewById(R.id.storeName);
         store_name.setText(store);
         c1.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -78,7 +78,7 @@ public class ResCheckActivity extends AppCompatActivity {
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 View r_view = View.inflate(view.getContext(), R.layout.r_list, null);   //뷰 가져오기
                 dateText = year + "-" + (month + 1) + "-" + dayOfMonth;
-                getDbData("http://jisung0920.cafe24.com/hers.php"); //서버에서 데이터 가져오는 함수 호출
+                getDbData("http://alpahers.cafe24.com/hers.php"); //서버에서 데이터 가져오는 함수 호출
                 final Dialog dialog = new Dialog(view.getContext()); //대화상자 생성
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(r_view); //대화상자 뷰 설정
@@ -145,7 +145,7 @@ public class ResCheckActivity extends AppCompatActivity {
                         posit = position;
                         allow = 1;
                         Log.d("test11", "1");
-                        getDbaccData("http://jisung0920.cafe24.com/hers_allow_change.php");
+                        getDbaccData("http://alpahers.cafe24.com/hers_allow_change.php");
                         Log.d("test11", "3");
                         if (flag == 1) {
 
@@ -164,7 +164,7 @@ public class ResCheckActivity extends AppCompatActivity {
                         name = r_list.get(position).getName();
                         posit = position;
                         allow = 2;
-                        getDbaccData("http://jisung0920.cafe24.com/hers_allow_change.php");
+                        getDbaccData("http://alpahers.cafe24.com/hers_allow_change.php");
                         r_adapter.notifyDataSetChanged();
                         Log.d("test11", "flag chang");
                         dialog.dismiss();
@@ -179,8 +179,8 @@ public class ResCheckActivity extends AppCompatActivity {
                 r_list = new ArrayList<reserver_al>();
                 r_adapter = new reserver_alAdapter(ResCheckActivity.this, r_list);
                 r_listView.setAdapter(r_adapter);
-                getDbResData("http://jisung0920.cafe24.com/hers_Res_C.php");
-                Toast.makeText(ResCheckActivity.this, "새로고침 되었습니다.", Toast.LENGTH_SHORT).show();
+                getDbResData("http://alpahers.cafe24.com/hers_Res_C.php");
+                Toast.makeText(ResCheckActivity.this, "예약 목록이 새로고침 되었습니다.", Toast.LENGTH_SHORT).show();
             }
         });
     }

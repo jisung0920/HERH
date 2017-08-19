@@ -44,52 +44,53 @@
         android:layout_height="0dp"
         android:layout_weight="2"
 
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:weightSum="5">
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:gravity="center_vertical"
+            android:text="영업 정보"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.3"/>
 
         <GridLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
 
-            android:layout_weight="5"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3.7"
             android:columnCount="2"
             android:paddingLeft="5dp"
-            android:paddingTop="10dp"
             android:rowCount="3">
 
             <TextView
                 android:text="전화번호 : "
-                android:textColor="@color/text"
-                android:textSize="20dp" />
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/tel"
-                android:text="00000000"
-                android:textColor="@color/text"
-                android:textSize="20dp" />
+                android:textSize="18dp" />
 
             <TextView
 
                 android:text="영업시간 : "
-                android:textColor="@color/text"
-                android:textSize="20dp" />
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/openTime"
-                android:text="0000-0000"
-                android:textColor="@color/text"
-                android:textSize="20dp" />
+                android:textSize="18dp" />
 
             <TextView
                 android:text="수용인원 : "
-                android:textColor="@color/text"
-                android:textSize="20dp" />
+                android:textSize="18dp"/>
 
             <TextView
                 android:id="@+id/maxNum"
-                android:text="100명"
-                android:textColor="@color/text"
-                android:textSize="20dp" />
+                android:text="00명"
+
+                android:textSize="18dp" />
         </GridLayout>
 
 

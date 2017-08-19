@@ -203,7 +203,7 @@ public class ReserveActivity extends AppCompatActivity {
             yes.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    send_Data("http://jisung0920.cafe24.com/hers_data_send.php");
+                    send_Data("http://alpahers.cafe24.com/hers_data_send.php");
                     dialog.dismiss();
 
                 }

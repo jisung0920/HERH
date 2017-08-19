@@ -111,8 +111,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         else if (v.getId() == R.id.login) {
             codeS = code.getText().toString();
             id = codeS;
-            gethostData("http://jisung0920.cafe24.com/hers_host_info.php");
-            tokenRegit("http://jisung0920.cafe24.com/hers_push_resigster.php");
+            gethostData("http://alpahers.cafe24.com/hers_host_info.php");
+            tokenRegit("http://alpahers.cafe24.com/hers_push_resigster.php");
 
         }
 
@@ -164,7 +164,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Toast.makeText(this, "로그인 되었습니다.", Toast.LENGTH_SHORT).show();
 
             id = acct.getEmail();
-            tokenRegit("http://jisung0920.cafe24.com/hers_push_resigster.php");
+            tokenRegit("http://alpahers.cafe24.com/hers_push_resigster.php");
             Log.d("test11", id + "/" + token);
             intent = new Intent(this, MainActivity.class);
             intent.putExtra("id", id);
