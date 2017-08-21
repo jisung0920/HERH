@@ -49,7 +49,7 @@ public class reserver_alAdapter extends BaseAdapter {
         TextView state = (TextView)convertView.findViewById(R.id.state);
         date.setText(alist.get(position).getDate());
         time.setText(alist.get(position).getTime().substring(0,5)+"시");
-        num.setText(alist.get(position).getNum()+"("+alist.get(position).getError()+")"+"명");
+        num.setText(alist.get(position).getNum()+"("+"±"+alist.get(position).getError()+")"+"명");
         int i = alist.get(position).getAllow();
         switch (i) {
             case 0:

@@ -47,7 +47,7 @@ public class reserverAdapter  extends BaseAdapter {
         TextView num = (TextView)convertView.findViewById(R.id.number);
         time.setText(alist.get(position).getTime().substring(0,5));
         name.setText(alist.get(position).getName());
-        num.setText(alist.get(position).getNum()+"("+alist.get(position).getError()+")"+"명");
+        num.setText(alist.get(position).getNum()+"("+"±"+alist.get(position).getError()+")"+"명");
         return convertView;
     }
 }

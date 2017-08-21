@@ -121,7 +121,7 @@ public class ResCheckActivity extends AppCompatActivity {
                 resName.setText("이름 : " + r_list.get(position).getName());
                 resTel.setText("전화번호 : " + r_list.get(position).getTel());
                 resTime.setText("시간 : " + r_list.get(position).getDate() + "   " + r_list.get(position).getTime().substring(0, 5) + "시");
-                resNum.setText("인원 : " + r_list.get(position).getNum() + "(" + r_list.get(position).getError() + ") 명");
+                resNum.setText("인원 : " + r_list.get(position).getNum() + "(" +"±"+ r_list.get(position).getError() + ") 명");
                 Button accept = (Button) re_view.findViewById(R.id.res_acc);
                 Button refuse = (Button) re_view.findViewById(R.id.res_ref);
                 if (r_list.get(position).getAllow() != 0) {

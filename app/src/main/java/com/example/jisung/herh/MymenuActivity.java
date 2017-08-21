@@ -96,7 +96,7 @@ public class MymenuActivity extends AppCompatActivity {
                 resName.setText("단체명 : " + r_list.get(position).getName());
                 resTel.setText("전화번호 : " + r_list.get(position).getTel());
                 resTime.setText("시간 : " + r_list.get(position).getTime());
-                resNum.setText("인원 : " + r_list.get(position).getNum());
+                resNum.setText("인원 : " + r_list.get(position).getNum()+"(" +"±"+ r_list.get(position).getError() +") 명");
 
 
                 dialog.show();

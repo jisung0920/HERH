@@ -190,7 +190,7 @@ public class ReserveActivity extends AppCompatActivity {
             time_infor.setText(hour + "시 " + min + "분");
             date_infor.setText(day_infor);
             phone_infor.setText(phone_Num);
-            peo_infor.setText(people_Num + "(" + error_Num + ")" + "명");
+            peo_infor.setText(people_Num + "(" +"±"+error_Num + ")" + "명");
             dialog.getWindow().setAttributes(params);
             dialog.show();
 
