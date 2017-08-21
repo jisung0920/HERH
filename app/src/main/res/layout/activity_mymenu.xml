@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="#fff"
     android:orientation="vertical"
     android:weightSum="10"
     tools:context="com.example.jisung.herh.MymenuActivity">
@@ -26,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="예약정보"
+                android:text="예약 현황"
                 android:textColor="@color/textW"
                 android:textSize="20dp" />
 
@@ -46,26 +46,53 @@
     </FrameLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:weightSum="7"
-        android:orientation="horizontal">
-        <TextView
-            android:textStyle="bold"
-            android:textColor="@color/text"
-            android:gravity="center"
-            android:textSize="20dp"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
 
+        android:orientation="horizontal"
+        android:weightSum="3.5"
+            android:layout_marginRight="5dp"
+>
+            <TextView
+                android:text="날짜"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="50dp" />
 
-    </LinearLayout>
+            <TextView
+                android:text="시간"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="50dp" />
+
+            <TextView
+                android:text="장소"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:id="@+id/number"/>
+            <TextView
+                android:text="상태"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="0.5"
+                android:layout_margin="2dp"/>
+
+        </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#888"
+        />
 
     <ListView
+        android:layout_marginTop="2dp"
         android:id="@+id/recordList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="8" />
+        android:layout_weight="9"/>
 
 </LinearLayout>

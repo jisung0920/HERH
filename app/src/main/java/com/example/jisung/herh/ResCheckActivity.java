@@ -1,3 +1,4 @@
+
 package com.example.jisung.herh;
 
 import android.app.Dialog;
@@ -36,7 +37,9 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class ResCheckActivity extends AppCompatActivity {
@@ -45,7 +48,7 @@ public class ResCheckActivity extends AppCompatActivity {
     ArrayList<reserver_al> r_list;
     reserverAdapter adapter;
     reserver_alAdapter r_adapter;
-    LinearLayout linear;
+    LinearLayout linear,linear2;
     String store, name, time;
     int flag = 0;
     String dateText;
@@ -54,13 +57,16 @@ public class ResCheckActivity extends AppCompatActivity {
     Button resBtn, reqBtn;
     ListView listView, r_listView;
     Display display;
-   Button refBtn;
+    Button refBtn;
+    TextView today;
     int posit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("test11","1");
         setContentView(R.layout.activity_res_check);
+        Log.d("test11","2");
         if(!NetworkCheck.connect(this)) {
             Toast.makeText(this, "인터넷 연결 상태를 확인해 주세요", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, LoginActivity.class);
@@ -68,6 +74,7 @@ public class ResCheckActivity extends AppCompatActivity {
             finish();
         }
         init();
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         Intent getintent = getIntent();
         store = getintent.getStringExtra("store");
         getDbResData("http://alpahers.cafe24.com/hers_Res_C.php");
@@ -103,7 +110,6 @@ public class ResCheckActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 final View re_view = View.inflate(view.getContext(), R.layout.r_list_item2, null);
-//                AlertDialog.Builder dialog = new AlertDialog.Builder(view.getContext());
                 final Dialog dialog = new Dialog(view.getContext()); //대화상자 생성
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(re_view); //대화상자 뷰 설정
@@ -147,9 +153,6 @@ public class ResCheckActivity extends AppCompatActivity {
                         Log.d("test11", "1");
                         getDbaccData("http://alpahers.cafe24.com/hers_allow_change.php");
                         Log.d("test11", "3");
-                        if (flag == 1) {
-
-                        }
                         r_adapter.notifyDataSetChanged();
                         dialog.dismiss();
                     }
@@ -192,11 +195,18 @@ public class ResCheckActivity extends AppCompatActivity {
         list = new ArrayList<reserver>();
         c1 = (CalendarView) findViewById(R.id.calendarView);
         linear = (LinearLayout) findViewById(R.id.linear);
+        linear2 = (LinearLayout)findViewById(R.id.linear2);
         r_listView = (ListView) findViewById(R.id.list1);
         r_list = new ArrayList<reserver_al>();
         r_adapter = new reserver_alAdapter(this, r_list);
         r_listView.setAdapter(r_adapter);
         refBtn = (Button)findViewById(R.id.ref_btn);
+        today =(TextView)findViewById(R.id.today_time);
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+        SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy-MM-dd");
+        String nowDate = sdfNow.format(date);
+        today.setText(nowDate);
     }
 
     public void onClick(View v) {
@@ -210,11 +220,11 @@ public class ResCheckActivity extends AppCompatActivity {
             resBtn.setBackgroundResource(R.color.loginBtnOn);
             reqBtn.setBackgroundResource(R.color.loginButton);
             linear.setVisibility(View.VISIBLE);
-            r_listView.setVisibility(View.GONE);
+            linear2.setVisibility(View.GONE);
         } else if (v.getId() == R.id.reqBtn) {
             reqBtn.setBackgroundResource(R.color.loginBtnOn);
             resBtn.setBackgroundResource(R.color.loginButton);
-            r_listView.setVisibility(View.VISIBLE);
+            linear2.setVisibility(View.VISIBLE);
             linear.setVisibility(View.GONE);
         }
     }
@@ -433,3 +443,5 @@ public class ResCheckActivity extends AppCompatActivity {
     }
 
 }
+
+      

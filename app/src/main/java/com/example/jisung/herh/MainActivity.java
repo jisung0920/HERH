@@ -76,11 +76,13 @@ public class MainActivity extends AppCompatActivity{
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("test11","10");
                 Intent intent = new Intent(MainActivity.this, InfoActivity.class);
                 intent.putExtra("store", stores.get(position).getStore_name());
-                intent.putExtra("image", stores.get(position).getImg());
                 intent.putExtra("id", user_id);
+                Log.d("test11","20");
                 startActivity(intent);
+                Log.d("test11","30");
             }
         });
     }
@@ -100,15 +102,31 @@ public class MainActivity extends AppCompatActivity{
         pub.setOnClickListener(colorChanger);
         rest.setOnClickListener(colorChanger);
 
-        stores.add(new Store(R.drawable.sample2,"한신포차"));
-        stores.add(new Store(R.drawable.sample3,"맥주창고"));
-        stores.add(new Store(R.drawable.sample4,"투다리"));
-        stores.add(new Store(R.drawable.sample5,"봉구비어"));
+        stores.add(new Store(R.drawable.sample1,"한신포차"));
+        stores.add(new Store(R.drawable.sample1,"맥주창고"));
+        stores.add(new Store(R.drawable.sample1,"투다리"));
+        stores.add(new Store(R.drawable.sample1,"봉구비어"));
         stores.add(new Store(R.drawable.sample1,"칠성포차"));
 
 
-        rests.add(new Store(R.drawable.sample4, "덴뿌라"));
-        rests.add(new Store(R.drawable.sample5, "난집에 돈까스"));
+
+        rests.add(new Store(R.drawable.sample1, "덴뿌라"));
+        rests.add(new Store(R.drawable.sample1, "난집에 돈까스"));
+
+        rests.add(new Store(R.drawable.sample1, "덴뿌라"));
+        rests.add(new Store(R.drawable.sample1, "난집에 돈까스"));
+
+        rests.add(new Store(R.drawable.sample1, "덴뿌라"));
+        rests.add(new Store(R.drawable.sample1, "난집에 돈까스"));
+
+        rests.add(new Store(R.drawable.sample1, "덴뿌라"));
+        rests.add(new Store(R.drawable.sample1, "난집에 돈까스"));
+
+        rests.add(new Store(R.drawable.sample1, "덴뿌라"));
+        rests.add(new Store(R.drawable.sample1, "난집에 돈까스"));
+
+        rests.add(new Store(R.drawable.sample1, "덴뿌라"));
+        rests.add(new Store(R.drawable.sample1, "난집에 돈까스"));
 
         storeGridSet();
         mHandler.sendEmptyMessage(0);

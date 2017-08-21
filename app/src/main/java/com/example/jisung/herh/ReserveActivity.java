@@ -75,7 +75,7 @@ public class ReserveActivity extends AppCompatActivity {
                 String data = "";
                 Scanner s = new Scanner(in);
                 data += s.nextLine();
-                s.close();
+                s.close();               Log.d("teset", data+"1");
                 return data;
             }
             @Override

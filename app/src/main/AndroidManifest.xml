@@ -5,7 +5,7 @@
     <permission
         android:name="com.example.jisung.herh.locationapi.maps.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
-     
+
     <uses-permission android:name="com.example.jisung.herh.locationapi.maps.permission.MAPS_RECEIVE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -35,17 +35,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".User_ResActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".ReserveActivity" />
-        <activity android:name=".ResCheckActivity" />
+        <activity android:name=".User_ResActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".ReserveActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".ResCheckActivity"
+            android:screenOrientation="portrait"
+            />
 
         <service
             android:name=".MyFirebaseMessagingService"
@@ -81,9 +91,13 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBhCmTNtQ2SKJULB8s6KCWldHA_V0yaa5g" />
 
-        <activity android:name=".InfoActivity" />
-        <activity android:name=".MymenuActivity" >
- </activity>
+        <activity android:name=".InfoActivity"
+            android:screenOrientation="portrait"
+/>
+        <activity android:name=".MymenuActivity"
+            android:screenOrientation="portrait"
+            >
+        </activity>
     </application>
 
 </manifest>

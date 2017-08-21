@@ -93,25 +93,12 @@ public class MymenuActivity extends AppCompatActivity {
                 TextView resTel = (TextView) re_view.findViewById(R.id.res_tel);
                 TextView resTime = (TextView) re_view.findViewById(R.id.res_time);
                 TextView resNum = (TextView) re_view.findViewById(R.id.res_num);
-                resName.setText("예약명 : " + r_list.get(position).getName());
+                resName.setText("단체명 : " + r_list.get(position).getName());
                 resTel.setText("전화번호 : " + r_list.get(position).getTel());
                 resTime.setText("시간 : " + r_list.get(position).getTime());
                 resNum.setText("인원 : " + r_list.get(position).getNum());
 
-                Button refuse = (Button) re_view.findViewById(R.id.res_ref);
-                refuse.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        time = r_list.get(position).getTime();
-                        name = r_list.get(position).getName();
-                        allow = r_list.get(position).getAllow();
-                        if(flag == 1){
-                            r_list.get(position).setAllow(2);
-                        }
-                        r_adapter.notifyDataSetChanged();
-                        dialog.dismiss();
-                    }
-                });
+
                 dialog.show();
             }
         });
