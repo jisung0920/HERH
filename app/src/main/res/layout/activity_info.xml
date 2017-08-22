@@ -42,7 +42,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="1.7"
 
         android:orientation="vertical"
         android:weightSum="5">
@@ -54,13 +54,20 @@
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.3"/>
+            android:layout_weight="1.5"/>
+        <View
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#888"
+            />
 
         <GridLayout
 
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3.7"
+            android:layout_weight="3.5"
             android:columnCount="2"
             android:paddingLeft="5dp"
             android:rowCount="3">
@@ -95,12 +102,15 @@
 
 
     </LinearLayout>
+<View
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="0.3"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2.8"
-
         android:orientation="horizontal"
         android:padding="5dp"
         android:weightSum="4">

@@ -1,23 +1,25 @@
 package com.example.jisung.herh;
 
+import android.graphics.Bitmap;
+
 /**
  * Created by jisung on 2017-06-02.
  */
 
 public class Store {
-    private int img;
+    private String img;
     private String store_name;
 
-    public Store(int img, String store_name) {
+    public Store(String img, String store_name) {
         this.img = img;
         this.store_name = store_name;
     }
 
-    public int getImg() {
+    public String getImg() {
         return img;
     }
 
-    public void setImg(int img) {
+    public void setImg(String img) {
         this.img = img;
     }
 

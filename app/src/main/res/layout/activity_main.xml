@@ -47,6 +47,7 @@
             android:text="술집"/>
 
         <ImageButton
+            android:padding="5dp"
             android:background="@color/loginButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"

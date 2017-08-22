@@ -15,6 +15,8 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.sephiroth.android.library.picasso.Picasso;
+
 /**
  * Created by jisung on 2017-06-02.
  */
@@ -56,7 +58,11 @@ public class storeAdapter extends BaseAdapter {
 //        bitmap= BitmapFactory.decodeResource(context.getResources(),data.get(position).getImg());
 //        bitmap=Bitmap.createScaledBitmap(bitmap,250,250,false);
         try {
-            img.setImageResource(data.get(position).getImg());
+            Picasso.with(context)
+                    .load(data.get(position).getImg())
+                    .into(img);
+
+//            img.setImageBitmap(data.get(position).getImg());
 //            img.setImageBitmap(bitmap);
         }catch (OutOfMemoryError e){
             recycleHalf();

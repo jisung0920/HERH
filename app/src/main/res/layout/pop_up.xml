@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#fff"
-    android:weightSum="60">
+    android:weightSum="70">
 
 
     <FrameLayout
@@ -65,8 +65,13 @@
             android:layout_weight = "1"/>
 
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#888"
+        />
     <LinearLayout
-        android:background="@drawable/xml_border"
+
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
@@ -92,7 +97,11 @@
             android:textSize="15dp"
             android:layout_weight = "10"/>
     </LinearLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#888"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -132,9 +141,12 @@
 
     </LinearLayout>
 
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#888"
+        />
     <LinearLayout
-        android:background="@drawable/xml_border"
         android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -162,14 +174,28 @@
             android:layout_weight = "10"/>
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#888"
+        />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"/>
+    <TextView
+        android:gravity="center"
+        android:text="위 정보는 해당 매장에 전송이 됩니다."
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"/>
     <LinearLayout
         android:gravity="center"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:weightSum="2"
-
         android:layout_weight="10">
         <Button
             android:textColor="@color/textW"
@@ -179,7 +205,7 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="예약"/>
+            android:text="신청"/>
         <Button
             android:textColor="@color/textW"
             android:layout_margin="3dp"

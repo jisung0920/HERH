@@ -84,7 +84,6 @@ public class InfoActivity extends AppCompatActivity implements OnMapReadyCallbac
         Intent getintent = getIntent();
         store = getintent.getStringExtra("store");
         user_id = getintent.getStringExtra("id");
-        img = getintent.getIntExtra("image", R.drawable.sample1);
         store_name.setText(store);
         mCoder = new Geocoder(this);
 
