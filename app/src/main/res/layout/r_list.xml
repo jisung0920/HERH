@@ -65,7 +65,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="예약자"
+            android:text="단체명"
             android:textColor="@color/text"
             android:textSize="15dp" />
 

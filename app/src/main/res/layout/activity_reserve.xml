@@ -47,17 +47,21 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="10dp"
-        android:layout_weight="5"
+        android:layout_weight="6"
         android:gravity="center_vertical"
         android:text="인원"
         android:textColor="@color/text"
         android:textSize="20dp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#888"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="20"
-        android:background="@drawable/xml_border"
         android:orientation="horizontal"
         android:weightSum="100">
 
@@ -99,36 +103,51 @@
             android:textColor="@color/text"
             android:textSize="20dp" />
     </LinearLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#888"
+        />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="5"
+        android:layout_weight="6"
         android:gravity="center_vertical"
         android:text="예약시간"
         android:textColor="@color/text"
         android:textSize="20dp" />
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#888"
+        />
     <TimePicker
         android:id="@+id/time"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="20"
-        android:background="@drawable/xml_border"
         android:timePickerMode="spinner"></TimePicker>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#888"
+        />
     <TextView
 
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="10dp"
-        android:layout_weight="8"
+        android:layout_weight="6"
         android:gravity="center_vertical"
         android:text="단체명"
         android:textColor="@color/text"
         android:textSize="20dp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#888"
+        />
 
     <EditText
         android:maxLength="10"
@@ -136,25 +155,31 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="8"
-        android:background="@drawable/xml_border"
         android:gravity="center"
         android:hint="ex)학회 알파"
         android:nextFocusDown="@+id/phoneNum"
         android:imeOptions="actionDone"
         android:inputType="text"
-        android:textColor="@color/text"
-        android:textColorHint="@color/text" />
-
+        android:textColor="@color/text"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#888"
+        />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="10dp"
-        android:layout_weight="8"
+        android:layout_weight="6"
         android:gravity="center_vertical"
         android:text="연락처"
         android:textColor="@color/text"
         android:textSize="20dp" />
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#888"
+        />
     <EditText
         android:maxLength="12"
         android:id="@+id/phoneNum"
@@ -162,7 +187,6 @@
         android:layout_height="0dp"
         android:layout_weight="8"
         android:hint="-없이 입력하세요"
-        android:background="@drawable/xml_border"
         android:gravity="center"
         android:inputType="number"
         android:textColor="@color/text" />
@@ -172,7 +196,7 @@
         android:layout_width="match_parent"
         android:layout_height="8dp"
         android:layout_gravity="center"
-        android:layout_weight="8"
+        android:layout_weight="10"
         android:background="@color/loginBtnOn"
         android:onClick="onClick"
         android:textColor="@color/textW"

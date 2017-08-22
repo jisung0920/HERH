@@ -57,13 +57,13 @@ public class MainActivity extends AppCompatActivity{
         user_id = intent.getStringExtra("id");
         pub = (ImageButton) findViewById(R.id.pub);
         rest = (ImageButton) findViewById(R.id.rest);
-        eventSlide = (ViewPager) findViewById(R.id.eventSlide);
-        Log.d("test11","-1");
-
-        eventSlide.setAdapter(new pagerAdapter(getSupportFragmentManager()));
-        Log.d("test11","0");
-
-        eventSlide.setCurrentItem(0);
+//        eventSlide = (ViewPager) findViewById(R.id.eventSlide);
+//        Log.d("test11","-1");
+//
+//        eventSlide.setAdapter(new pagerAdapter(getSupportFragmentManager()));
+//        Log.d("test11","0");
+//
+//        eventSlide.setCurrentItem(0);
         Log.d("test11","5");
 
     }
@@ -103,33 +103,19 @@ public class MainActivity extends AppCompatActivity{
         rest.setOnClickListener(colorChanger);
 
         stores.add(new Store(R.drawable.sample1,"한신포차"));
-        stores.add(new Store(R.drawable.sample1,"맥주창고"));
-        stores.add(new Store(R.drawable.sample1,"투다리"));
-        stores.add(new Store(R.drawable.sample1,"봉구비어"));
-        stores.add(new Store(R.drawable.sample1,"칠성포차"));
+        stores.add(new Store(R.drawable.sample2,"맥주창고"));
+        stores.add(new Store(R.drawable.sample3,"투다리"));
+        stores.add(new Store(R.drawable.sample4,"봉구비어"));
+        stores.add(new Store(R.drawable.sample5,"칠성포차"));
 
 
 
         rests.add(new Store(R.drawable.sample1, "덴뿌라"));
         rests.add(new Store(R.drawable.sample1, "난집에 돈까스"));
 
-        rests.add(new Store(R.drawable.sample1, "덴뿌라"));
-        rests.add(new Store(R.drawable.sample1, "난집에 돈까스"));
-
-        rests.add(new Store(R.drawable.sample1, "덴뿌라"));
-        rests.add(new Store(R.drawable.sample1, "난집에 돈까스"));
-
-        rests.add(new Store(R.drawable.sample1, "덴뿌라"));
-        rests.add(new Store(R.drawable.sample1, "난집에 돈까스"));
-
-        rests.add(new Store(R.drawable.sample1, "덴뿌라"));
-        rests.add(new Store(R.drawable.sample1, "난집에 돈까스"));
-
-        rests.add(new Store(R.drawable.sample1, "덴뿌라"));
-        rests.add(new Store(R.drawable.sample1, "난집에 돈까스"));
 
         storeGridSet();
-        mHandler.sendEmptyMessage(0);
+//        mHandler.sendEmptyMessage(0);
     }
 
     View.OnClickListener colorChanger = new View.OnClickListener(){
