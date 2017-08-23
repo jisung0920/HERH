@@ -97,7 +97,7 @@ public class User_ResActivity extends AppCompatActivity {
 
         });
         TextView store_name = (TextView) findViewById(R.id.textView);
-        store_name.setText(store);
+        store_name.setText("예약 장소명 : "+store);
     }
 
     void init(){

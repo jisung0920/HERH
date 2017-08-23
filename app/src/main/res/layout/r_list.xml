@@ -59,6 +59,12 @@
             android:text="시간"
             android:textColor="@color/text"
             android:textSize="15dp" />
+        <View
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#888"
+            android:layout_width="0.1dp"
+            android:layout_height="match_parent"/>
 
         <TextView
             android:layout_width="0dp"
@@ -68,7 +74,12 @@
             android:text="단체명"
             android:textColor="@color/text"
             android:textSize="15dp" />
-
+        <View
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#888"
+            android:layout_width="0.1dp"
+            android:layout_height="match_parent"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"

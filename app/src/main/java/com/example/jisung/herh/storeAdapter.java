@@ -7,7 +7,9 @@ import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -53,7 +55,7 @@ public class storeAdapter extends BaseAdapter {
         if (convertView == null)
             convertView = inflater.inflate(R.layout.store_list_item, null);
 
-        ImageView img = (ImageView) convertView.findViewById(R.id.storeimg);
+      ImageView img = (ImageView) convertView.findViewById(R.id.storeimg);
 
 //        bitmap= BitmapFactory.decodeResource(context.getResources(),data.get(position).getImg());
 //        bitmap=Bitmap.createScaledBitmap(bitmap,250,250,false);

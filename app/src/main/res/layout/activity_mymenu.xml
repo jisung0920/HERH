@@ -58,14 +58,24 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="50dp" />
-
+        <View
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#888"
+            android:layout_width="0.1dp"
+            android:layout_height="match_parent"/>
             <TextView
                 android:text="시간"
                 android:gravity="center"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="50dp" />
-
+        <View
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#888"
+            android:layout_width="0.1dp"
+            android:layout_height="match_parent"/>
             <TextView
                 android:text="장소"
                 android:gravity="center"
@@ -73,6 +83,12 @@
                 android:layout_height="50dp"
                 android:layout_weight="1"
                 android:id="@+id/number"/>
+        <View
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#888"
+            android:layout_width="0.1dp"
+            android:layout_height="match_parent"/>
             <TextView
                 android:text="상태"
                 android:gravity="center"

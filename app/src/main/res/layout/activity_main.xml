@@ -59,6 +59,7 @@
     </LinearLayout>
 
     <GridView
+        android:stretchMode="columnWidth"
         android:id="@+id/stores"
         android:layout_weight="6"
         android:layout_width="match_parent"

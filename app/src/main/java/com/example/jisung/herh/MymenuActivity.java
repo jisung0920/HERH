@@ -93,8 +93,8 @@ public class MymenuActivity extends AppCompatActivity {
                 TextView resTel = (TextView) re_view.findViewById(R.id.res_tel);
                 TextView resTime = (TextView) re_view.findViewById(R.id.res_time);
                 TextView resNum = (TextView) re_view.findViewById(R.id.res_num);
-                resName.setText("단체명 : " + r_list.get(position).getName());
-                resTel.setText("전화번호 : " + r_list.get(position).getTel());
+                resName.setText("예약매장 : " + r_list.get(position).getName());
+                resTel.setText("연락처 : " + r_list.get(position).getTel());
                 resTime.setText("시간 : " + r_list.get(position).getTime());
                 resNum.setText("인원 : " + r_list.get(position).getNum()+"(" +"±"+ r_list.get(position).getError() +") 명");
 
