@@ -43,6 +43,8 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity{
@@ -254,6 +256,7 @@ public class MainActivity extends AppCompatActivity{
                 try {
                     JSONObject jsonObject = new JSONObject(result);//jsonObject 형태로 위에서 데이터들을 포멧한다.
                     JSONArray reserveData = jsonObject.getJSONArray("response"); //json형태에서 response라는 키를 갖는 배열을 가져온다.
+                    long seed = System.nanoTime();
                     if(c==1) {
                         for (int i = 0; i < reserveData.length(); i++) { //배열의 길이만큼 반복해서 더한다.
                             JSONObject object = reserveData.getJSONObject(i);
@@ -261,8 +264,10 @@ public class MainActivity extends AppCompatActivity{
                             String img_link = object.getString("img");
 
                             stores.add(new Store(img_link, store_name));
-                            adapter.notifyDataSetChanged();
+
                         }
+                        Collections.shuffle(stores,new Random(seed));
+                        adapter.notifyDataSetChanged();
                     }
                     else {
                         for (int i = 0; i < reserveData.length(); i++) { //배열의 길이만큼 반복해서 더한다.
@@ -270,8 +275,11 @@ public class MainActivity extends AppCompatActivity{
                             String store_name = object.getString("name");
                             String img_link = object.getString("img");
                             rests.add(new Store(img_link, store_name));
-                            resadapter.notifyDataSetChanged();
+
                         }
+
+                        Collections.shuffle(stores,new Random(seed));
+                        resadapter.notifyDataSetChanged();
                     }
 
 

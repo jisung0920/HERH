@@ -139,7 +139,7 @@ public class ResCheckActivity extends AppCompatActivity {
                 WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
 
                 params.width = (int) (display.getWidth() * 0.8);
-                params.height = (int) (display.getHeight() * 0.6);
+                params.height = (int) (display.getHeight() * 0.7);
                 dialog.getWindow().setAttributes(params);
                 dialog.show();
                 accept.setOnClickListener(new View.OnClickListener() {

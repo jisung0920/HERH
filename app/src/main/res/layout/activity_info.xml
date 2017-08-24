@@ -396,7 +396,7 @@
         android:layout_weight="1"
         android:background="@drawable/btn_type1"
         android:onClick="resClick"
-        android:text="예약하기"
+        android:text="예약 신청하기"
         android:textColor="@color/textW" />
 
 </LinearLayout>
