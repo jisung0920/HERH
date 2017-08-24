@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity{
     ViewPager eventSlide;
 
     int slidNum=0;
-    Fragment cur_fragment=new Fragment();
+    Fragment cur_fragment;
 
     Handler mHandler=new Handler(){
         public void handleMessage(Message msg){
@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity{
 
 
     protected void init(){
+        cur_fragment=new Fragment();
         Intent intent = getIntent();
         user_id = intent.getStringExtra("id");
         pub = (ImageButton) findViewById(R.id.pub);
