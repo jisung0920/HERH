@@ -192,16 +192,17 @@ public class InfoActivity extends AppCompatActivity implements OnMapReadyCallbac
         GetDataJSON g = new GetDataJSON();
         g.execute(string); //doinBackground 메소드를 실행시킨다.
     }
-    void onClick(View v){
+    public void DonClick(View v){
         if(!NetworkCheck.connect(this)) {
             Toast.makeText(this, "인터넷 연결 상태를 확인해 주세요", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             finish();
         }
-
-        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:/" +tel_num));
-        startActivity(intent);
+        if(v.getId()==R.id.callbutton) {
+            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:/" + tel_num));
+            startActivity(intent);
+        }
     }
 
 
