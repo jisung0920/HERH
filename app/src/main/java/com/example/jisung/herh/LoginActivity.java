@@ -103,9 +103,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             userBtn.setBackgroundResource(R.color.loginButton);
             userScreen.setVisibility(View.INVISIBLE);
             hostScreen.setVisibility(View.VISIBLE);
-            if (!codeS.equals("")) {
-//                gethostData("http://jisung0920.cafe24.com/hers_host_info.php");
-            }
+
 
         }//화면 변경
         else if (v.getId() == R.id.login) {
