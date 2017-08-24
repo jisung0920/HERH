@@ -8,7 +8,7 @@
     android:background="#fff"
     android:orientation="vertical"
     android:weightSum="10"
-    tools:context="com.example.jisung.herh.MymenuActivity">
+    tools:context="com.alpa.jisung.herh.MymenuActivity">
 
     <FrameLayout
         android:layout_width="match_parent"

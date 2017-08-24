@@ -7,7 +7,7 @@
     android:background="#fff"
     android:orientation="vertical"
     android:weightSum="10"
-    tools:context="com.example.jisung.herh.InfoActivity">
+    tools:context="com.alpa.jisung.herh.InfoActivity">
 
     <FrameLayout
         android:layout_width="match_parent"

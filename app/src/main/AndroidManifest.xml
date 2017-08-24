@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.jisung.herh">
+    package="com.alpa.jisung.herh">
 
     <permission
-        android:name="com.example.jisung.herh.locationapi.maps.permission.MAPS_RECEIVE"
+        android:name="com.alpa.jisung.herh.locationapi.maps.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
 
     <uses-permission android:name="com.example.jisung.herh.locationapi.maps.permission.MAPS_RECEIVE" />
@@ -21,7 +21,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <permission
-        android:name="com.example.jisung.herh.permission.C2D_MESSAGE"
+        android:name="com.alpa.jisung.herh.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
     <uses-permission android:name="com.example.jisung.herh.permission.C2D_MESSAGE" />
@@ -31,6 +31,7 @@
         android:required="true" />
 
     <application
+        android:debuggable="false"
         android:largeHeap="true"
         android:allowBackup="true"
         android:icon="@drawable/hers_main_logo"
@@ -38,7 +39,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".LoginActivity"
+        <activity android:name="com.alpa.jisung.herh.LoginActivity"
             android:screenOrientation="portrait"
             >
             <intent-filter>
@@ -47,21 +48,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".User_ResActivity"
+        <activity android:name="com.alpa.jisung.herh.User_ResActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".MainActivity"
+        <activity android:name="com.alpa.jisung.herh.MainActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".ReserveActivity"
+        <activity android:name="com.alpa.jisung.herh.ReserveActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".ResCheckActivity"
+        <activity android:name="com.alpa.jisung.herh.ResCheckActivity"
             android:screenOrientation="portrait"
             />
 
         <service
-            android:name=".MyFirebaseMessagingService"
+            android:name="com.alpa.jisung.herh.MyFirebaseMessagingService"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -69,7 +70,7 @@
             </intent-filter>
         </service>
         <service
-            android:name=".MyFirebaseInstanceIDService"
+            android:name="com.alpa.jisung.herh.MyFirebaseInstanceIDService"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -94,10 +95,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBhCmTNtQ2SKJULB8s6KCWldHA_V0yaa5g" />
 
-        <activity android:name=".InfoActivity"
+        <activity android:name="com.alpa.jisung.herh.InfoActivity"
             android:screenOrientation="portrait"
 />
-        <activity android:name=".MymenuActivity"
+        <activity android:name="com.alpa.jisung.herh.MymenuActivity"
             android:screenOrientation="portrait"
             >
         </activity>

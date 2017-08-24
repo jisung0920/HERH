@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:weightSum="10"
     android:background="#fff"
-    tools:context="com.example.jisung.herh.MainActivity"
+    tools:context="com.alpa.jisung.herh.MainActivity"
     android:orientation="vertical">
 
     <FrameLayout

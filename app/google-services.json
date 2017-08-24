@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:646846915744:android:8da4ae76e95af508",
         "android_client_info": {
-          "package_name": "com.example.jisung.herh"
+          "package_name": "com.alpa.jisung.herh"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "646846915744-q13d2i5uj87ebuqe1qv267v9hh61h44d.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.jisung.herh",
+            "package_name": "com.alpa.jisung.herh",
             "certificate_hash": "b5d86b979c91686dc2b437a652b9aabc2397a145"
           }
         },
